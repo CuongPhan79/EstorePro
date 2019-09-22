@@ -15,5 +15,6 @@ module.exports = {
       }
       //let _default = await sails.helpers.getDefaultData(this.req);
       return exits.success();
+      //ss
     }
 }
