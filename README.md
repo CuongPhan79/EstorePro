@@ -1,4 +1,4 @@
-# warehouse-management
+# EstorePro
 
 a [Sails v1](https://sailsjs.com) application
 
