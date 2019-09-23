@@ -13,8 +13,8 @@ module.exports = {
       if (!this.req.me) {
         throw { redirect: '/backend/login' };
       }
-      //let _default = await sails.helpers.getDefaultData(this.req);
-      return exits.success();
+      let _default = await sails.helpers.getDefaultData(this.req);
+      return exits.success(_default);
       //ss
     }
 }
