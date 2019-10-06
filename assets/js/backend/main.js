@@ -27,6 +27,7 @@ var curBackendEKP;
 
 $(document).ready(function () {
     ESTOREPRO.login();
+    ESTOREPRO.initialize();
 });
 ESTOREPRO.login = function () {
     if ($('#frmLogin').length) {
@@ -70,3 +71,14 @@ ESTOREPRO.login = function () {
         });
     }
 };
+
+ESTOREPRO.initialize = function () {
+    console.log(EKPAction);
+    var pathName = EKPAction;
+    switch (pathName) {
+        case 'backend/productType/list':
+            curBackendEKP = new IndexListproductTypeBackendEKP();
+            break;
+          //------------------------------------------------
+    }      
+}

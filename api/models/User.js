@@ -1,11 +1,4 @@
-/**
- * @copyright CDSoft Application. Co © 2019
- * @author brianvo
- * @create 2019/09/09 
- * @update 2019/09/09 
- * @file api/models/User.js
- * @description :: Store user model.
- */
+
 
 module.exports = {
   attributes: {
@@ -35,14 +28,14 @@ module.exports = {
       type: 'string',
       required: true,
       description: 'The fist of the student\'s name',
-      example: 'Vo Thien Thanh',
+      example: 'Phan',
       maxLength: 255
     },
     lastName: {
       type: 'string',
       required: true,
       description: 'The fist of the student\'s name',
-      example: 'Vo Thien Thanh',
+      example: 'Cuong',
       maxLength: 255
     },
     birthday: {
