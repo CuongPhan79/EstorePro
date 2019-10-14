@@ -7,16 +7,16 @@ class IndexListproductTypeBackendEKP extends BaseBackendEKP {
 	initialize() {
 		//DO NOT LOAD UNNESSESARY CLASS
 		//Init form + list if page have BOTH  
-		this.list = new ListIndexAlbumBackendEKP();
+		this.list = new ListIndexProductTypeBackendEKP();
 	}
 }
 
 
-class ListIndexAlbumBackendEKP {
+class ListIndexProductTypeBackendEKP {
 	constructor(opts) {
 		_.extend(this, opts);
 
-		this.tblId = 'tblAlbum';
+		this.tblId = 'tblproductType';
 		this.tableObj = $('#' + this.tblId);
 		this.checkAll = null;
 		this.listChecked = '';
@@ -122,7 +122,7 @@ class ListIndexAlbumBackendEKP {
 			},
 			"processing": true,
 			"serverSide": true,
-			"ajax": `/api/v1/backend/album/search?status=${params.status}`,
+			"ajax": `/api/v1/backend/productType/search?status=${params.status}`,
 			//Add column data (JSON) mapping from AJAX to TABLE
 			"columns": [
                 { "data": "id" },

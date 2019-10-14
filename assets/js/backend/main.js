@@ -76,7 +76,7 @@ ESTOREPRO.initialize = function () {
     console.log(EKPAction);
     var pathName = EKPAction;
     switch (pathName) {
-        case 'backend/productType/list':
+        case 'backend/productType/index':
             curBackendEKP = new IndexListproductTypeBackendEKP();
             break;
           //------------------------------------------------

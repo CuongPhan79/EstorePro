@@ -27,7 +27,7 @@ module.exports.routes = Object.assign(routes_api.api, {
   'GET /backend/dashboard': { action: 'backend/dashboard/index'},
 
   // PRODUCT TYPE
-  'GET /backend/productType': { action: 'backend/productType/index' },
+  'GET /backend/productType/index': { action: 'backend/productType/index' },
 
   /***************************************************************************
   *                                                                          *
