@@ -27,7 +27,7 @@ const ProductTypeService = {
     
         let options = {};
     
-        for (let key in CourseSession.attributes) {
+        for (let key in ProductType.attributes) {
           if (key === "id" || key === "createdAt" || key === "toJSON") continue;
     
           if (params && typeof (params[key]) !== "undefined") {
@@ -78,3 +78,4 @@ const ProductTypeService = {
         return totalTax;
     }
 }
+module.exports = ProductTypeService;

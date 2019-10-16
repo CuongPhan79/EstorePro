@@ -1,8 +1,72 @@
+const ErrorMessages = require('../../../../config/errors');
 module.exports = {
+  add: async (req, res) => {
+    sails.log.info("================================ ProductTypeController.add => START ================================");
+    // GET ALL PARAMS
+    const params = req.allParams();
+    // CHECK NAME & CODE
+    if (!params.code || !params.title.trim().length) {
+      return res.badRequest(ErrorService.PRODUCTTYPE_CODE_REQUIRED);
+    }
+    if (!params.title || !params.title.trim().length) {
+    return res.badRequest(ErrorService.PRODUCTTYPE_CODE_REQUIRED);
+    }
+    // PREPARE DATA
+    const newData = {
+    code: params.code,
+    title: params.title, // REQUIRED
+    status: params.status, // REQUIRED
+    description: params.description,
+    };
+    // ADD NEW DATA 
+    const newProductType = await ProductTypeService.add(newData);
+    // RETURN DATA
+    return res.ok(newProductType);
+  },
+  get: async (req, res) => {
+    sails.log.info("================================ BranchController.get => START ================================");
+    // GET ALL PARAMS
+    const params = req.allParams();
+    if (!params.id) {
+      return res.badRequest(ErrorService.PRODUCTTYPE_ID_REQUIRED);
+    }
+    // QUERY & CHECK DATA TITLE
+    const dataObj = await ProductTypeService.get({
+      id: params.id
+    });
+    if (!dataObj) {
+      return res.notFound();
+    }
+    // RETURN DATA TITLE
+    return res.json(dataObj);
+  },
+  edit: async (req, res) => {
+    sails.log.info("================================ BranchController.edit => START ================================");
+    // GET ALL PARAMS
+    const params = req.allParams();
+    // CHECK TITLE
+    if (!params.title || !params.title.trim().length) {
+      return res.badRequest(ErrorService.PRODUCTTYPE_ID_REQUIRED);
+    }
+    // CHECK DATA 
+    const dataObj = await ProductTypeService.get({ id: params.id });
+    if (!dataObj) return res.notFound();
+    // PREPARE DATA 
+    const editData = {
+      code: params.code,
+      title: params.title, // REQUIRED
+      status: params.status, // REQUIRED
+      description: params.description,
+    }
+    // UPDATE DATA TITLE
+    const editObj = await ProductTypeService.edit({ id: params.id }, editData);
+    // RETURN DATA TITLE
+    return res.json(editObj);
+  },
   search: async (req, res) => {
-    sails.log.info("================================ CourseSessionController.search => START ================================");
+    sails.log.info("================================ ProductTypeController.search => START ================================");
     let params = req.allParams();
-    let status = params.status ? parseInt(params.status) : -1;
+    let status = params.status ? parseInt(params.status) : 1;
     let title = params.search ? params.search.value : null;
     let draw = (params.draw) ? parseInt(params.draw) : 1;
     let limit = (params.length) ? parseInt(params.length) : null;
@@ -34,7 +98,7 @@ module.exports = {
     }
     //END IF TITLE
     let arrObjProductType = await ProductTypeService.find(where, limit, skip, sort);
-    //RESPONSE COURSE SESSIONS
+    //RESPONSE
     let resProductType = []; 
     for (let productType of arrObjProductType) {
       let tmpData = {};
@@ -42,6 +106,7 @@ module.exports = {
       tmpData.title = productType.title;
       tmpData.code = productType.code;
       tmpData.tool = await sails.helpers.renderRowAction(productType);
+      tmpData.description = productType.description;
       if (productType.status == 0) {
         tmpData.status = '<label class="badge badge-warning">Lưu tạm</label>';
       } else if (productType.status == 3) {
@@ -51,7 +116,7 @@ module.exports = {
       }
       resProductType.push(tmpData);
     };
-    //END RESPONSE COURSE SESSIONS
+    //END RESPONSE
     let totalProductType = await ProductTypeService.count(where);
     return res.ok({ draw: draw, recordsTotal: totalProductType, recordsFiltered: totalProductType, data: resProductType });
   }

@@ -16,6 +16,25 @@ Cloud.setup({
             "verb": "PUT",
             "url": "/api/v1/backend/entrance/login",
             "args": ["emailAddress", "password"]
-        }
+        },
+        //-------------------------LOGIN---------------- 
+        
+        //PRODUCTTYPE
+        "addProductType": {
+            "verb": "POST",
+            "url": "/api/v1/backend/productType/add",
+            "args": ["code","title","description", "status"]
+        },
+        "getProductType": {
+            "verb": "GET",
+            "url": "/api/v1/backend/productType/get/:id",
+            "args": ["id"]
+        },
+        "editProductType": {
+            "verb": "PATCH",
+            "url": "/api/v1/backend/productType/edit/:id",
+            "args": ["id"]
+        },
+        //-------------------------PRODUCTTYPE---------------- 
     }
 })

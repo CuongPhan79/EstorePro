@@ -36,7 +36,7 @@ module.exports = {
       userActive: inputs.req.me,
       //classActive: classActive,
       //classActiveTitle: classActiveTitle,
-      //moduleActive: inputs.req.options,
+      moduleActive: inputs.req.options,
      // listClasses: listClasses,
       //listCourseSession: listCourseSession,
       //currCourseSession: currCourseSession,

@@ -20,7 +20,7 @@
       }
     }
   
-  }(jQuery));
+}(jQuery));
   var ESTOREPRO = ESTOREPRO || {};
   //global variable for current backend instance 
 var curBackendEKP;
@@ -76,7 +76,7 @@ ESTOREPRO.initialize = function () {
     console.log(EKPAction);
     var pathName = EKPAction;
     switch (pathName) {
-        case 'backend/productType/index':
+        case 'backend/producttype/index':
             curBackendEKP = new IndexListproductTypeBackendEKP();
             break;
           //------------------------------------------------

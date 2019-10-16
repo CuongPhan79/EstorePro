@@ -34,4 +34,12 @@ module.exports.custom = {
       URL: '?status=3'
     },
   },
+  STATUS: {
+    ALL: -1,
+    DRAFT: 0,
+    ACTIVE: 1,
+    SCHEDULE: 2,
+    TRASH: 3,
+    DONE: 4
+  }
 };
