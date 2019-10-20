@@ -10,3 +10,4 @@ module.exports.api = {
     'POST /api/v1/backend/productType/trash/:ids': { controller: 'backend/productType/ProductTypeController', action: 'trash' },
     'PATCH /api/v1/backend/productType/delete/:id': { controller: 'backend/productType/ProductTypeController', action: 'delete' },
 }
+s
