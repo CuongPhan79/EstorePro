@@ -86,7 +86,7 @@ class ListIndexProductTypeBackendEKP {
 			}
 		}).then((value) => {
 			if (value) {
-				Cloud.trashAlbum.with({ ids: id }).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+				Cloud.trashProductType.with({ ids: id }).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
 					if (err) {
 						console.log(err);
 						return;
@@ -126,8 +126,8 @@ class ListIndexProductTypeBackendEKP {
 			"ajax": `/api/v1/backend/productType/search?status=${params.status}`,
 			//Add column data (JSON) mapping from AJAX to TABLE
 			"columns": [
-                { "data": "id" },
-                { "data": "code" },
+        { "data": "id" },
+        { "data": "code" },
 				{ "data": "title" },
 				{ "data": "description" },
 				{ "data": "status" },

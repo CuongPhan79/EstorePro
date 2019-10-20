@@ -24,7 +24,7 @@ module.exports = {
     return res.ok(newProductType);
   },
   get: async (req, res) => {
-    sails.log.info("================================ BranchController.get => START ================================");
+    sails.log.info("================================ ProductTypeController.get => START ================================");
     // GET ALL PARAMS
     const params = req.allParams();
     if (!params.id) {
@@ -41,7 +41,7 @@ module.exports = {
     return res.json(dataObj);
   },
   edit: async (req, res) => {
-    sails.log.info("================================ BranchController.edit => START ================================");
+    sails.log.info("================================ ProductTypeController.edit => START ================================");
     // GET ALL PARAMS
     const params = req.allParams();
     // CHECK TITLE
@@ -62,6 +62,41 @@ module.exports = {
     const editObj = await ProductTypeService.edit({ id: params.id }, editData);
     // RETURN DATA TITLE
     return res.json(editObj);
+  },
+  trash: async (req, res) => {
+    sails.log.info("================================ ProductTypeController.trash => START ================================");
+    let params = req.allParams();
+    if (!params.ids) return res.badRequest(ErrorService.PRODUCTTYPE_ID_REQUIRED);
+    // Call constructor with custom options:
+    let data = { status: sails.config.custom.STATUS.TRASH };
+    let ids = params.ids;
+    if(params.ids.indexOf(';') != -1) {
+      ids = ids.split(';');
+    }
+    if (typeof (ids) == 'object') {
+      for (var i = 0; i < ids.length; i++) {
+        let dataObj = await ProductTypeService.get({ id: ids[i] });
+        if (!dataObj) return res.notFound(ErrorTitle.ERR_NOT_FOUND);
+        //If status  == 3 => Delete 
+        if (dataObj.status == 3) {
+          ProductTypeService.del({ id: ids[i] });
+        } else {
+          await ProductType.update(ids[i]).set(data);
+        }
+      }
+    }
+    else {
+      //ALWAYS CHECK  OBJECT EXIST
+      let dataObj = await ProductTypeService.get({ id: ids });
+      if (!dataObj) return res.notFound(ErrorTitle.ERR_NOT_FOUND);
+      //If status Title == 3 => Delete Title
+      if (dataObj.status == 3) {
+        ProductTypeService.del({ id: ids });
+      } else {
+        await ProductType.update(ids).set(data);
+      }
+    }
+    return res.ok();
   },
   search: async (req, res) => {
     sails.log.info("================================ ProductTypeController.search => START ================================");

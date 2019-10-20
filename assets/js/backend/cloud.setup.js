@@ -35,6 +35,11 @@ Cloud.setup({
             "url": "/api/v1/backend/productType/edit/:id",
             "args": ["id"]
         },
+        "trashProductType": {
+            "verb": "PATCH",
+            "url": "/api/v1/backend/productType/trash/:ids",
+            "args": ["id"]
+        },
         //-------------------------PRODUCTTYPE---------------- 
     }
 })
