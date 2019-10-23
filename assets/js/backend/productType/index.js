@@ -20,7 +20,8 @@ class ListIndexProductTypeBackendEKP {
 		this.tblId = 'tblproductType';
 		this.tableObj = $('#' + this.tblId);
 		this.checkAll = null;
-		this.listChecked = '';
+    this.listChecked = '';
+    window.dataTable = null;
 		this.messages = {
 			addSuccess: 'Thêm mới thành công',
 			editSuccess: 'Cập nhật thành công.',
@@ -117,7 +118,7 @@ class ListIndexProductTypeBackendEKP {
 		params.type = searchParams.get('type') || '0';
 		params.status = searchParams.get('status') || '1';
 		//cloud success  
-		var table = this.tableObj.DataTable({
+		window.dataTable = this.tableObj.DataTable({
 			"language": {
 				"url": "/js/backend/datatable.json"
 			},
@@ -220,7 +221,9 @@ class FormIndexProductTypeBackendEKP {
       this.formId = 'formProductType';
       this.formObj = $('#' + this.formId);
       this.title = $('.modal-title');
-      this.input1 = $('#title');
+      this.input1 = $('#code');
+      this.input2 = $('#title');
+      this.input3 = $('#description');
       this.modalMenu = $("#modal-edit");
       this.originalModal = $('#modal-edit').clone();
       this.btnclsModal = $('#btnCloseModal');
@@ -253,7 +256,19 @@ class FormIndexProductTypeBackendEKP {
       let _this = this;
       _this.initValidation();
       _this.clickHandle();
-      _this.initModel();
+      //_this.initModel();
+      _this.handleItemActions();
+    }
+    handleItemActions(){
+      let _this = this;
+      //ONCLICK ADD
+      _this.btnadd.click(function(){
+        let _currentForm = window.curBackendEKP.form;
+        //Render data from response to form
+        _currentForm.renderFormData('add', {});
+        $('.js-process-basic-multiple').select2();
+      })
+      //END ONCLICK ADD
     }
     initModel(){
       let _this = this;
@@ -352,6 +367,7 @@ class FormIndexProductTypeBackendEKP {
                   return;
                 }
                 _this.alert.removeClass('d-none').addClass("alert-fill-success").html(_this.messages.editSuccess);
+                window.dataTable.ajax.reload();
                 setTimeout(function(){
                   _this.alert.removeClass('alert-fill-success').addClass("d-none");
                 }, 3000);
@@ -374,6 +390,7 @@ class FormIndexProductTypeBackendEKP {
                   return;
                 }
                 _this.alert.removeClass('d-none').addClass("alert-fill-success").html(_this.messages.addSuccess);
+                window.dataTable.ajax.reload();
                 setTimeout(function(){
                   _this.alert.removeClass('alert-fill-success').addClass("d-none");
                 }, 3000);
@@ -397,32 +414,37 @@ class FormIndexProductTypeBackendEKP {
       let _this = this;
       if (status && status === 'edit') {
         _this.formObj.attr('data-manner', 'edit');
+        if (datas) {
+          //map id -> form to edit
+          _this.formObj.attr('data-edit-id', datas.id);
+          //Update form fields (input + textarea) base on name of field
+          _.each(datas, (value, key) => {
+            if (key !== 'status') {
+              //Status is radiobuton -> no update
+                _this.formObj.find('[name="' + key + '"]').val(value);
+            } else {
+                // Update status radiobutton
+                if (value == 1) {
+                  _this.formObj.find('#statusActive')[0].checked = true;
+                  _this.formObj.find('#statusDraft')[0].checked = false;
+                } else {
+                  _this.formObj.find('#statusActive')[0].checked = false;
+                  _this.formObj.find('#statusDraft')[0].checked = true;
+                }
+            }
+          });
+    
+          //Handle static data like title, headline, button when change from add to edit and otherwise
+          
+        }
       } else {
         _this.formObj.attr('data-manner', 'add');
+        //let _currentForm = window.curBackendEKP.form
+        _this.input1.val("");
+        _this.input2.val("");
+        _this.input3.val("");
       }
-      if (datas) {
-        //map id -> form to edit
-        _this.formObj.attr('data-edit-id', datas.id);
-        //Update form fields (input + textarea) base on name of field
-        _.each(datas, (value, key) => {
-          if (key !== 'status') {
-            //Status is radiobuton -> no update
-              _this.formObj.find('[name="' + key + '"]').val(value);
-          } else {
-              // Update status radiobutton
-              if (value == 1) {
-                _this.formObj.find('#statusActive')[0].checked = true;
-                _this.formObj.find('#statusDraft')[0].checked = false;
-              } else {
-                _this.formObj.find('#statusActive')[0].checked = false;
-                _this.formObj.find('#statusDraft')[0].checked = true;
-              }
-          }
-        });
-  
-        //Handle static data like title, headline, button when change from add to edit and otherwise
-        
-      }
+      
       //reset form validator
       if (status === 'edit') {
         _this.headline.text(_this.messages.headlineUpdate);
@@ -434,11 +456,7 @@ class FormIndexProductTypeBackendEKP {
         _this.btnSubmit.text(_this.messages.add);
       }
       //End handle static data
-      _this.modalMenu.on('hide.bs.modal', function (e) {
-        _this.modalMenu.remove();
-        let myClone = _this.originalModal.clone();
-        $('.content-wrapper').append(myClone);
-      });
+      
     }
   
 } 

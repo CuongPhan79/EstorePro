@@ -36,5 +36,7 @@
 	"Thêm mới": "Thêm mới",
 	"Cập nhật": "Cập nhật",
 	"Mã loại sản phẩm tối thiểu 2 ký tự và tối đa 30 ký tự.": "Mã loại sản phẩm tối thiểu 2 ký tự và tối đa 30 ký tự.",
-	"Tên loại sản phẩm tối thiểu 3 ký tự và tối đa 70 ký tự.": "Tên loại sản phẩm tối thiểu 3 ký tự và tối đa 70 ký tự."
+	"Tên loại sản phẩm tối thiểu 3 ký tự và tối đa 70 ký tự.": "Tên loại sản phẩm tối thiểu 3 ký tự và tối đa 70 ký tự.",
+	"Mã loại sản phẩm là trường bắt buộc": "Mã loại sản phẩm là trường bắt buộc",
+	"Tên loại sản phẩm là trường bắt buộc": "Tên loại sản phẩm là trường bắt buộc"
 }
