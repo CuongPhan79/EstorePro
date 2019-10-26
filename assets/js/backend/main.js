@@ -80,5 +80,9 @@ ESTOREPRO.initialize = function () {
             curBackendEKP = new IndexListproductTypeBackendEKP();
             break;
           //------------------------------------------------
+        case 'backend/brand/index':
+            curBackendEKP = new IndexListbrandBackendEKP();
+            break;
+        //------------------------------------------------   
     }      
 }

@@ -1,37 +1,33 @@
 const ErrorService = require('../../../../config/errors');
 module.exports = {
-  add: async (req, res) => {
-    sails.log.info("================================ ProductTypeController.add => START ================================");
+   add: async (req, res) => {
+    sails.log.info("================================ BrandController.add => START ================================");
     // GET ALL PARAMS
     const params = req.allParams();
     // CHECK NAME & CODE
-    if (!params.code || !params.title.trim().length) {
-      return res.badRequest(ErrorService.PRODUCTTYPE_CODE_REQUIRED);
-    }
     if (!params.title || !params.title.trim().length) {
-    return res.badRequest(ErrorService.PRODUCTTYPE_CODE_REQUIRED);
+    return res.badRequest(ErrorService.BRAND_CODE_REQUIRED);
     }
     // PREPARE DATA
     const newData = {
-    code: params.code,
     title: params.title, // REQUIRED
     status: params.status, // REQUIRED
     description: params.description,
     };
     // ADD NEW DATA 
-    const newProductType = await ProductTypeService.add(newData);
+    const newBrand = await BrandService.add(newData);
     // RETURN DATA
-    return res.ok(newProductType);
+    return res.ok(newBrand);
   },
   get: async (req, res) => {
-    sails.log.info("================================ ProductTypeController.get => START ================================");
+    sails.log.info("================================ BrandController.get => START ================================");
     // GET ALL PARAMS
     const params = req.allParams();
     if (!params.id) {
-      return res.badRequest(ErrorService.PRODUCTTYPE_ID_REQUIRED);
+      return res.badRequest(ErrorService.BRAND_ID_REQUIRED);
     }
     // QUERY & CHECK DATA TITLE
-    const dataObj = await ProductTypeService.get({
+    const dataObj = await BrandService.get({
       id: params.id
     });
     if (!dataObj) {
@@ -41,32 +37,31 @@ module.exports = {
     return res.json(dataObj);
   },
   edit: async (req, res) => {
-    sails.log.info("================================ ProductTypeController.edit => START ================================");
+    sails.log.info("================================ BrandController.edit => START ================================");
     // GET ALL PARAMS
     const params = req.allParams();
     // CHECK TITLE
     if (!params.title || !params.title.trim().length) {
-      return res.badRequest(ErrorService.PRODUCTTYPE_ID_REQUIRED);
+      return res.badRequest(ErrorService.BRAND_ID_REQUIRED);
     }
     // CHECK DATA 
-    const dataObj = await ProductTypeService.get({ id: params.id });
+    const dataObj = await BrandService.get({ id: params.id });
     if (!dataObj) return res.notFound();
     // PREPARE DATA 
     const editData = {
-      code: params.code,
       title: params.title, // REQUIRED
       status: params.status, // REQUIRED
       description: params.description,
     }
     // UPDATE DATA TITLE
-    const editObj = await ProductTypeService.edit({ id: params.id }, editData);
+    const editObj = await BrandService.edit({ id: params.id }, editData);
     // RETURN DATA TITLE
     return res.json(editObj);
   },
   trash: async (req, res) => {
-    sails.log.info("================================ ProductTypeController.trash => START ================================");
+    sails.log.info("================================ BrandController.trash => START ================================");
     let params = req.allParams();
-    if (!params.ids) return res.badRequest(ErrorService.PRODUCTTYPE_ID_REQUIRED);
+    if (!params.ids) return res.badRequest(ErrorService.BRAND_ID_REQUIRED);
     // Call constructor with custom options:
     let data = { status: sails.config.custom.STATUS.TRASH };
     let ids = params.ids;
@@ -75,25 +70,25 @@ module.exports = {
     }
     if (typeof (ids) == 'object') {
       for (var i = 0; i < ids.length; i++) {
-        let dataObj = await ProductTypeService.get({ id: ids[i] });
-        if (!dataObj) return res.notFound(ErrorTitle.ERR_NOT_FOUND);
+        let dataObj = await BrandService.get({ id: ids[i] });
+        if (!dataObj) return res.notFound(ErrorService.ERR_NOT_FOUND);
         //If status  == 3 => Delete 
         if (dataObj.status == 3) {
-          ProductTypeService.del({ id: ids[i] });
+          BrandService.del({ id: ids[i] });
         } else {
-          await ProductType.update(ids[i]).set(data);
+          await Brand.update(ids[i]).set(data);
         }
       }
     }
     else {
       //ALWAYS CHECK  OBJECT EXIST
-      let dataObj = await ProductTypeService.get({ id: ids });
-      if (!dataObj) return res.notFound(ErrorTitle.ERR_NOT_FOUND);
+      let dataObj = await BrandService.get({ id: ids });
+      if (!dataObj) return res.notFound(ErrorService.ERR_NOT_FOUND);
       //If status Title == 3 => Delete Title
       if (dataObj.status == 3) {
-        ProductTypeService.del({ id: ids });
+        BrandService.del({ id: ids });
       } else {
-        await ProductType.update(ids).set(data);
+        await Brand.update(ids).set(data);
       }
     }
     return res.ok();
@@ -132,27 +127,26 @@ module.exports = {
       };
     }
     //END IF TITLE
-    let arrObjProductType = await ProductTypeService.find(where, limit, skip, sort);
+    let arrObjBrand = await BrandService.find(where, limit, skip, sort);
     //RESPONSE
-    let resProductType = []; 
-    for (let productType of arrObjProductType) {
+    let resBrand = [];
+    for (let brand of arrObjBrand) {
       let tmpData = {};
-      tmpData.id = '<input class="js-checkbox-item" type="checkbox" value="' + productType.id + '">';
-      tmpData.title = productType.title;
-      tmpData.code = productType.code;
-      tmpData.tool = await sails.helpers.renderRowAction(productType);
-      tmpData.description = productType.description;
-      if (productType.status == 0) {
+      tmpData.id = '<input class="js-checkbox-item" type="checkbox" value="' + brand.id + '">';
+      tmpData.title = brand.title;
+      tmpData.tool = await sails.helpers.renderRowAction(brand);
+      tmpData.description = brand.description;
+      if (brand.status == 0) {
         tmpData.status = '<label class="badge badge-warning">Lưu tạm</label>';
-      } else if (productType.status == 3) {
+      } else if (brand.status == 3) {
         tmpData.status = '<label class="badge badge-danger">Thùng rác</label>';
       } else {
         tmpData.status = '<label class="badge badge-success">Sử dụng</label>';
       }
-      resProductType.push(tmpData);
+      resBrand.push(tmpData);
     };
     //END RESPONSE
-    let totalProductType = await ProductTypeService.count(where);
-    return res.ok({ draw: draw, recordsTotal: totalProductType, recordsFiltered: totalProductType, data: resProductType });
+    let totalBrand = await BrandService.count(where);
+    return res.ok({ draw: draw, recordsTotal: totalBrand, recordsFiltered: totalBrand, data: resBrand });
   }
-};
+}

@@ -25,9 +25,12 @@ module.exports.routes = Object.assign(routes_api.api, {
 
   'GET /backend/login': { action: 'backend/entrance/view-login', locals: { layout: 'backend/layouts/layout-guest' } },
   'GET /backend/dashboard': { action: 'backend/dashboard/index'},
-
+  
   // PRODUCT TYPE
   'GET /backend/productType/index': { action: 'backend/productType/index' },
+
+  //BRAND
+  'GET /backend/brand/index': { action: 'backend/brand/index'},
 
   /***************************************************************************
   *                                                                          *

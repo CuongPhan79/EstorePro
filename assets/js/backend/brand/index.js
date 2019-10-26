@@ -1,4 +1,4 @@
-class IndexListproductTypeBackendEKP extends BaseBackendEKP {
+class IndexListbrandBackendEKP extends BaseBackendEKP {
 	constructor() {
 		super();
 		this.initialize();
@@ -7,17 +7,17 @@ class IndexListproductTypeBackendEKP extends BaseBackendEKP {
 	initialize() {
 		//DO NOT LOAD UNNESSESARY CLASS
 		//Init form + list if page have BOTH  
-		this.list = new ListIndexProductTypeBackendEKP();
-		this.form = new FormIndexProductTypeBackendEKP();
+		this.list = new ListIndexBrandBackendEKP();
+		this.form = new FormIndexBrandBackendEKP();
 	}
 }
 
 
-class ListIndexProductTypeBackendEKP {
+class ListIndexBrandBackendEKP {
 	constructor(opts) {
 		_.extend(this, opts);
 
-		this.tblId = 'tblproductType';
+		this.tblId = 'tblBrand';
 		this.tableObj = $('#' + this.tblId);
 		this.checkAll = null;
     this.listChecked = '';
@@ -87,7 +87,7 @@ class ListIndexProductTypeBackendEKP {
 			}
 		}).then((value) => {
 			if (value) {
-				Cloud.trashProductType.with({ ids: id }).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+				Cloud.trashBrand.with({ ids: id }).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
 					if (err) {
 						console.log(err);
 						return;
@@ -124,11 +124,10 @@ class ListIndexProductTypeBackendEKP {
 			},
 			"processing": true,
 			"serverSide": true,
-			"ajax": `/api/v1/backend/productType/search?status=${params.status}`,
+			"ajax": `/api/v1/backend/brand/search?status=${params.status}`,
 			//Add column data (JSON) mapping from AJAX to TABLE
 			"columns": [
         { "data": "id" },
-        { "data": "code" },
 				{ "data": "title" },
 				{ "data": "description" },
 				{ "data": "status" },
@@ -162,7 +161,7 @@ class ListIndexProductTypeBackendEKP {
         e.preventDefault();
         let id = $(this).attr('data-id');
         //get AJAX data
-        Cloud.getProductType.with({ id: id }).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+        Cloud.getBrand.with({ id: id }).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
           if (err) {
             console.log(err);
             return;
@@ -215,10 +214,10 @@ class ListIndexProductTypeBackendEKP {
 		});
 	}
 }
-class FormIndexProductTypeBackendEKP {
+class FormIndexBrandBackendEKP {
     constructor(opts) {
       _.extend(this, opts);
-      this.formId = 'formProductType';
+      this.formId = 'formBrand';
       this.formObj = $('#' + this.formId);
       this.title = $('.modal-title');
       this.input1 = $('#code');
@@ -238,8 +237,8 @@ class FormIndexProductTypeBackendEKP {
         this.btnReset = this.formObj.find('button[type="reset"]');
   
         this.messages = {
-          headlineAdd: 'Thêm loại sản phẩm',
-          headlineUpdate: 'Cập nhật sản phẩm',
+          headlineAdd: 'Thêm thương hiệu',
+          headlineUpdate: 'Cập nhật thương hiệu',
           addSuccess: 'Thêm mới thành công',
           editSuccess: 'Cập nhật thành công.',
           error: 'Có lỗi xảy ra',
@@ -296,7 +295,7 @@ class FormIndexProductTypeBackendEKP {
       let _this = this;
       _this.formObj.formValidation({
         button: {
-          selector: '#btnFormProductType',
+          selector: '#btnFormBrand',
           disabled: 'disabled'
         },
         fields: {
@@ -352,7 +351,7 @@ class FormIndexProductTypeBackendEKP {
           //reset form validator
           if (manner === 'edit') {
             tmpData.id = _this.formObj.attr('data-edit-id');
-            Cloud.editProductType.with(tmpData).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+            Cloud.editBrand.with(tmpData).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
               if(err){
                 _this.alert.removeClass('d-none').addClass("alert-fill-danger").html(_this.messages.error);
                 setTimeout(function(){
@@ -375,7 +374,7 @@ class FormIndexProductTypeBackendEKP {
               //cloud success
             });
           } else {
-            Cloud.addProductType.with(tmpData).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+            Cloud.addBrand.with(tmpData).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
               if(err){
                 _this.alert.removeClass('d-none').addClass("alert-fill-danger").html(_this.messages.error);
                 setTimeout(function(){

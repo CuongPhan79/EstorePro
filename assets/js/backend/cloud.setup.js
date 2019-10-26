@@ -40,6 +40,29 @@ Cloud.setup({
             "url": "/api/v1/backend/productType/trash/:ids",
             "args": ["id"]
         },
-        //-------------------------PRODUCTTYPE---------------- 
+        //-------------------------PRODUCTTYPE----------------
+
+        //BRAND
+        "addBrand": {
+            "verb": "POST",
+            "url": "/api/v1/backend/brand/add",
+            "args": ["title","description", "status"]
+        },
+        "getBrand": {
+            "verb": "GET",
+            "url": "/api/v1/backend/brand/get/:id",
+            "args": ["id"]
+        },
+        "editBrand": {
+            "verb": "PATCH",
+            "url": "/api/v1/backend/brand/edit/:id",
+            "args": ["id"]
+        },
+        "trashBrand": {
+            "verb": "PATCH",
+            "url": "/api/v1/backend/brand/trash/:ids",
+            "args": ["id"]
+        },
+        //-------------------------BRAND---------------- 
     }
 })

@@ -1,5 +1,7 @@
-
-
+<%
+let action = moduleActive.action;
+action = action.replace(/\//g, '-'); //replace '/' by '-';
+%>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item">
@@ -9,15 +11,16 @@
       </a>
     </li>
     <li
-      class="nav-item ">
+      class="nav-item <%= ( action == 'backend-producttype-index'||action == 'backend-brand-index') ? 'active' : '' %>">
       <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="true" aria-controls="tables">
         <i class="mdi mdi-cube menu-icon"></i>
         <span class="menu-title"><%= __('Sản phẩm') %></span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="collapse show" id="form-elements">
+      <div class="collapse <%= (action == 'backend-producttype-index' || action == 'backend-brand-index') ? 'show' : '' %>" id="tables">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link" href="/backend/productType/index">Loại sản phẩm</a></li>                
+          <li class="nav-item"><a class="nav-link <%= (action == 'backend-producttype-index') ? 'active' : '' %>"  href="/backend/producttype/index">Loại sản phẩm</a></li>
+          <li class="nav-item"><a class="nav-link <%= (action == 'backend-brand-index') ? 'active' : '' %>"  href="/backend/brand/index">Thương hiệu</a></li>              
         </ul>
       </div>
     </li>
