@@ -41,5 +41,22 @@
 	"Tên loại sản phẩm là trường bắt buộc": "Tên loại sản phẩm là trường bắt buộc",
 	"Tên thương hiệu tối thiểu 3 ký tự và tối đa 70 ký tự.": "Tên thương hiệu tối thiểu 3 ký tự và tối đa 70 ký tự.",
 	"Danh sách thương hiệu": "Danh sách thương hiệu",
-	"Tên loại thương hiệu là trường bắt buộc": "Tên loại thương hiệu là trường bắt buộc"
+	"Tên loại thương hiệu là trường bắt buộc": "Tên loại thương hiệu là trường bắt buộc",
+	"Danh sách sản phẩm": "Danh sách sản phẩm",
+	"Giá nhập": "Giá nhập",
+	"Giá bán": "Giá bán",
+	"Loại sản phẩm": "Loại sản phẩm",
+	"Thương hiệu": "Thương hiệu",
+	"Mã SP": "Mã SP",
+	"Loại SP": "Loại SP",
+	"Mã sản phẩm là trường bắt buộc": "Mã sản phẩm là trường bắt buộc",
+	"Mã sản phẩm tối thiểu 2 ký tự và tối đa 30 ký tự.": "Mã sản phẩm tối thiểu 2 ký tự và tối đa 30 ký tự.",
+	"Giá nhập là số": "Giá nhập là số",
+	"Giá nhập là trường bắt buộc": "Giá nhập là trường bắt buộc",
+	"Số tiền tối đa là 10000000": "Số tiền tối đa là 10000000",
+	"Số tiền tối thiểu là 0": "Số tiền tối thiểu là 0",
+	"Giá bán là số": "Giá bán là số",
+	"Giá bán là trường bắt buộc": "Giá bán là trường bắt buộc",
+	"Số tiền tối đa là 12": "Số tiền tối đa là 12",
+	"Choose": "Choose"
 }

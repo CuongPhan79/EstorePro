@@ -5,12 +5,15 @@ module.exports = {
     // GET ALL PARAMS
     const params = req.allParams();
     // CHECK NAME & CODE
-    if (!params.code || !params.title.trim().length) {
+    if (!params.code || !params.code.trim().length) {
       return res.badRequest(ErrorService.PRODUCTTYPE_CODE_REQUIRED);
     }
     if (!params.title || !params.title.trim().length) {
-    return res.badRequest(ErrorService.PRODUCTTYPE_CODE_REQUIRED);
+    return res.badRequest(ErrorService.PRODUCTTYPE_TITLE_REQUIRED);
     }
+    //CHECK DUPLICATE CODE
+    const code = await ProductType.findOne({ code: params.code });
+    if (code) return res.ok({message: 'Mã loại sản phẩm bị trùng'});
     // PREPARE DATA
     const newData = {
     code: params.code,
@@ -44,11 +47,21 @@ module.exports = {
     sails.log.info("================================ ProductTypeController.edit => START ================================");
     // GET ALL PARAMS
     const params = req.allParams();
-    // CHECK TITLE
+    // CHECK TITLE & CODE
+    if (!params.code || !params.code.trim().length) {
+      return res.badRequest(ErrorService.PRODUCTTYPE_CODE_REQUIRED);
+    }
     if (!params.title || !params.title.trim().length) {
       return res.badRequest(ErrorService.PRODUCTTYPE_ID_REQUIRED);
     }
-    // CHECK DATA 
+    //CHECK DUPLICATE CODE
+    const checkCode = await ProductType.findOne({ code: params.code });
+    if (checkCode) {
+      if(checkCode.id != params.id) {
+        return res.ok({message: 'Mã loại sản phẩm bị trùng'});
+      }
+    }
+    // CHECK DATA
     const dataObj = await ProductTypeService.get({ id: params.id });
     if (!dataObj) return res.notFound();
     // PREPARE DATA 

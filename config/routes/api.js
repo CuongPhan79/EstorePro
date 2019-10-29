@@ -17,4 +17,12 @@ module.exports.api = {
     'GET /api/v1/backend/brand/search': { controller: 'backend/brand/BrandController', action: 'search' },
     'PATCH /api/v1/backend/brand/trash/:ids': { controller: 'backend/brand/BrandController', action: 'trash' },
     'PATCH /api/v1/backend/brand/delete/:id': { controller: 'backend/brand/BrandController', action: 'delete' },
+
+    // PRODUCT
+    'POST /api/v1/backend/product/add': { controller: 'backend/product/ProductController', action: 'add' },
+    'GET /api/v1/backend/product/get/:id': { controller: 'backend/product/ProductController', action: 'get' },
+    'PATCH /api/v1/backend/product/edit/:id': { controller: 'backend/product/ProductController', action: 'edit' },
+    'GET /api/v1/backend/product/search': { controller: 'backend/product/ProductController', action: 'search' },
+    'PATCH /api/v1/backend/product/trash/:ids': { controller: 'backend/product/ProductController', action: 'trash' },
+    'PATCH /api/v1/backend/product/delete/:id': { controller: 'backend/product/ProductController', action: 'delete' },
 }
