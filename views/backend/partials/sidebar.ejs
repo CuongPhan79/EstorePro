@@ -32,12 +32,19 @@ action = action.replace(/\//g, '-'); //replace '/' by '-';
         <span class="menu-title"><%= __('Bán hàng') %></span>
       </a>
     </li>
-    <li
-      class="nav-item ">
-      <a class="nav-link" href="/backend/dashboard">
-        <i class="mdi mdi-chart-areaspline menu-icon"></i>
-        <span class="menu-title"><%= __('Doanh số') %></span>
+     <li
+      class="nav-item <%= ( action == 'backend-import-index'||action == 'backend-supplier-index' ) ? 'active' : '' %>">
+      <a class="nav-link" data-toggle="collapse" href="#imports" aria-expanded="true" aria-controls="imports">
+        <i class="mdi mdi-ambulance menu-icon"></i>
+        <span class="menu-title"><%= __('Nhập hàng') %></span>
+        <i class="menu-arrow"></i>
       </a>
+      <div class="collapse <%= (action == 'backend-import-index' || action == 'backend-supplier-index') ? 'show' : '' %>" id="imports">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"><a class="nav-link <%= (action == 'backend-supplier-index') ? 'active' : '' %>"  href="/backend/supplier/index">Nhà cung cấp</a></li> 
+          <li class="nav-item"><a class="nav-link <%= (action == 'backend-import-index') ? 'active' : '' %>"  href="/backend/import/index">Hóa đơn nhập</a></li>         
+        </ul>
+      </div>
     </li>
     <li
       class="nav-item ">

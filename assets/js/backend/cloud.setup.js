@@ -87,5 +87,28 @@ Cloud.setup({
             "args": ["id"]
         },
         //-------------------------PRODUCTTYPE----------------
+
+        //SUPPLIER
+        "addSupplier": {
+            "verb": "POST",
+            "url": "/api/v1/backend/supplier/add",
+            "args": ["name","email","phone", "address"]
+        },
+        "getSupplier": {
+            "verb": "GET",
+            "url": "/api/v1/backend/supplier/get/:id",
+            "args": ["id"]
+        },
+        "editSupplier": {
+            "verb": "PATCH",
+            "url": "/api/v1/backend/supplier/edit/:id",
+            "args": ["id"]
+        },
+        "trashSupplier": {
+            "verb": "PATCH",
+            "url": "/api/v1/backend/supplier/trash/:ids",
+            "args": ["id"]
+        },
+        //-------------------------SUPPLIER----------------
     }
 })

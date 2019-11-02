@@ -58,5 +58,22 @@
 	"Giá bán là số": "Giá bán là số",
 	"Giá bán là trường bắt buộc": "Giá bán là trường bắt buộc",
 	"Số tiền tối đa là 12": "Số tiền tối đa là 12",
-	"Choose": "Choose"
+	"Choose": "Choose",
+	"Nhập hàng": "Nhập hàng",
+	"Danh sách nhà cung cấp": "Danh sách nhà cung cấp",
+	"Tên": "Tên",
+	"Email": "Email",
+	"Số điện thoại": "Số điện thoại",
+	"Địa chỉ": "Địa chỉ",
+	"Tên nhà cung cấp là trường bắt buộc": "Tên nhà cung cấp là trường bắt buộc",
+	"Tên nhà cung cấp tối thiểu 3 ký tự và tối đa 70 ký tự.": "Tên nhà cung cấp tối thiểu 3 ký tự và tối đa 70 ký tự.",
+	"Tên thương hiệu là trường bắt buộc": "Tên thương hiệu là trường bắt buộc",
+	"Email đã tồn tại": "Email đã tồn tại",
+	"Email không được để trống": "Email không được để trống",
+	"Định dạng email không hợp lệ": "Định dạng email không hợp lệ",
+	"Số điện thoại không được để trống": "Số điện thoại không được để trống",
+	"Số điện thoại phải gồm 10 hoặc 11 chữ số": "Số điện thoại phải gồm 10 hoặc 11 chữ số",
+	"Email là trường bắt buộc": "Email là trường bắt buộc",
+	"Số điện thoại là trường bắt buộc": "Số điện thoại là trường bắt buộc",
+	"Địa chỉ là trường bắt buộc": "Địa chỉ là trường bắt buộc"
 }

@@ -25,4 +25,12 @@ module.exports.api = {
     'GET /api/v1/backend/product/search': { controller: 'backend/product/ProductController', action: 'search' },
     'PATCH /api/v1/backend/product/trash/:ids': { controller: 'backend/product/ProductController', action: 'trash' },
     'PATCH /api/v1/backend/product/delete/:id': { controller: 'backend/product/ProductController', action: 'delete' },
+
+    // PRODUCT
+    'POST /api/v1/backend/supplier/add': { controller: 'backend/supplier/SupplierController', action: 'add' },
+    'GET /api/v1/backend/supplier/get/:id': { controller: 'backend/supplier/SupplierController', action: 'get' },
+    'PATCH /api/v1/backend/supplier/edit/:id': { controller: 'backend/supplier/SupplierController', action: 'edit' },
+    'GET /api/v1/backend/supplier/search': { controller: 'backend/supplier/SupplierController', action: 'search' },
+    'PATCH /api/v1/backend/supplier/trash/:ids': { controller: 'backend/supplier/SupplierController', action: 'trash' },
+    'PATCH /api/v1/backend/supplier/delete/:id': { controller: 'backend/supplier/SupplierController', action: 'delete' },
 }
