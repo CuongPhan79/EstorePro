@@ -255,9 +255,9 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     onlyAllowOrigins: [
-      'https://admin.ekidpro.net',
-      'https://api.ekidpro.net',
-      'http://localhost:1338',
+      'https://admin.estore.net',
+      'https://api.estore.net',
+      'http://localhost:1336',
     ],
 
 
@@ -342,7 +342,7 @@ module.exports = {
   * this, just try deploying without setting it and see if it works.)       *
   *                                                                         *
   ***************************************************************************/
-  port: 1338,
+  port: 1336,
 
   /**************************************************************************
   *                                                                         *

@@ -12,7 +12,7 @@ action = action.replace(/\//g, '-'); //replace '/' by '-';
     </li>
     <li
       class="nav-item <%= ( action == 'backend-producttype-index'||action == 'backend-brand-index' || action == 'backend-product-index') ? 'active' : '' %>">
-      <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="true" aria-controls="tables">
+      <a class="nav-link" data-toggle="collapse" href="#tables" aria-controls="tables">
         <i class="mdi mdi-cube menu-icon"></i>
         <span class="menu-title"><%= __('Sản phẩm') %></span>
         <i class="menu-arrow"></i>
@@ -34,8 +34,8 @@ action = action.replace(/\//g, '-'); //replace '/' by '-';
     </li>
      <li
       class="nav-item <%= ( action == 'backend-import-index'||action == 'backend-supplier-index' ) ? 'active' : '' %>">
-      <a class="nav-link" data-toggle="collapse" href="#imports" aria-expanded="true" aria-controls="imports">
-        <i class="mdi mdi-ambulance menu-icon"></i>
+      <a class="nav-link" data-toggle="collapse" href="#imports" aria-controls="imports">
+        <i class="mdi mdi-ambulance menu-icon" ></i>
         <span class="menu-title"><%= __('Nhập hàng') %></span>
         <i class="menu-arrow"></i>
       </a>

@@ -110,5 +110,12 @@ Cloud.setup({
             "args": ["id"]
         },
         //-------------------------SUPPLIER----------------
+        //IMPORT
+        "addImport": {
+            "verb": "POST",
+            "url": "/api/v1/backend/import/add",
+            "args": []
+        },
+        //-------------------------IMPORT----------------
     }
 })

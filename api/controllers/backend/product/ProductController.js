@@ -180,5 +180,66 @@ module.exports = {
   //END RESPONSE
   let totalProduct = await ProductService.count(where);
   return res.ok({ draw: draw, recordsTotal: totalProduct, recordsFiltered: totalProduct, data: resProduct });
-  }
+  },
+  search2: async (req, res) => {
+    sails.log.info("================================ ProductController.search => START ================================");
+    let params = req.allParams();
+    let status = 1;
+    let title = params.search ? params.search.value : null;
+    let draw = (params.draw) ? parseInt(params.draw) : 1;
+    let limit = (params.length) ? parseInt(params.length) : null;
+    let skip = (params.start) ? parseInt(params.start) : null;
+    let sort = null;
+    if(params.order)
+    {
+      let objOrder = {};
+      objOrder[params.columns[params.order[0].column].data] = params.order[0].dir ;
+      sort = [objOrder];
+    }
+    
+    //find only active status
+    let where = {
+      status: status
+    };
+    //IF TITLE !='' => SEARCH STRING
+    if (typeof title === "string" && title.length > 0) {
+      where = {
+        or: [
+          {
+            title: {
+              contains: title
+            },
+            status: status
+          }
+        ]
+      };
+    }
+    //END IF TITLE
+    let arrObjProduct = await ProductService.find(where, limit, skip, sort);
+    //RESPONSE
+    let resProduct= []; 
+    for (let product of arrObjProduct) {
+      let tmpData = {};
+      tmpData.id =  product.id;
+      tmpData.title = product.title;
+      tmpData.code = product.code;
+      tmpData.productType = product.productType.title ? product.productType.title : '-';
+      tmpData.brand = product.brand.title ? product.brand.title : '-';
+      tmpData.entryPrice = (product.entryPrice) + ' đ';
+      tmpData.price = product.price ? product.price + ' đ': '-';
+      tmpData.tool = await sails.helpers.renderRowAction(product);
+      tmpData.description = product.description;
+      if (product.status == 0) {
+        tmpData.status = '<label class="badge badge-warning">Lưu tạm</label>';
+      } else if (product.status == 3) {
+        tmpData.status = '<label class="badge badge-danger">Thùng rác</label>';
+      } else {
+        tmpData.status = '<label class="badge badge-success">Sử dụng</label>';
+      }
+      resProduct.push(tmpData);
+    };
+    //END RESPONSE
+    let totalProduct = await ProductService.count(where);
+    return res.ok({ draw: draw, recordsTotal: totalProduct, recordsFiltered: totalProduct, data: resProduct });
+    }
 }

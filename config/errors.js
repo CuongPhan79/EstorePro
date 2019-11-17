@@ -21,5 +21,10 @@ const ErrorService = {
     SUPPLIER_PHONE_REQUIRED: { code: 'SUPPLIER_PHONE_REQUIRED', message: 'phone supplier is required' },
     SUPPLIER_ADDRESS_REQUIRED: { code: 'SUPPLIER_ADDRESS_REQUIRED', message: 'address supplier is required' },
     SUPPLIER_ID_REQUIRED: { code: 'SUPPLIER_ID_REQUIRED', message: 'id product is required'},
+    
+    //IMPORT
+    IMPORT_CODE_REQUIRED: { code: 'IMPORT_CODE_REQUIRED', message: 'code import is required' },
+    IMPORT_DATE_REQUIRED: { code: 'BRAND_TITLE_REQUIRED', message: 'title brand is required' },
+    IMPORT_ID_REQUIRED: { code: 'BRAND_ID_REQUIRED', message: 'id brand is required'},
 }
 module.exports = ErrorService;

@@ -335,9 +335,9 @@ h4.mb-0.schedule-title {
   display: flex !important;
   align-items: center;
 }
-.select2-container--default{
+/* .select2-container--default{
   width: auto !important
-}
+} */
 
 #infoContent, #healthyContent, #historyHealthyContent, #weightHeightHistoryContent {
   padding: 20px;
@@ -346,11 +346,11 @@ h4.mb-0.schedule-title {
 .modal-dialog-scrollable .modal-footer {
   flex-shrink: 0;
 }
-.select2-selection__rendered{
+/* .select2-selection__rendered{
   display: flex !important;
   align-items: center;
   height: 44px;
-}
+} */
 .pickUpModal .form-check .form-check-label input[type="radio"] + .input-helper:after{
   top: 21px;
 }

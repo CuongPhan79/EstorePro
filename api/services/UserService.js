@@ -100,7 +100,14 @@ const UserService = {
       .set(time)
       .fetch();
     return await fn.fetchDataInOne({ id: id });
-  }
+  },
+  get: async (options) => {
+    sails.log.info("================================ UserService.get -> options: ================================");
+    sails.log.info(options);
+
+    let records = await User.findOne(options);
+    return records;
+  },
 };
 
 module.exports = UserService;

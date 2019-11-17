@@ -48,6 +48,9 @@ module.exports = {
     userType: {
       type: 'number',
     },
-
+    imports: {
+      collection: 'import',
+      via: 'user'
+    }
   }
 };
