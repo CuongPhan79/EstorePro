@@ -20,11 +20,21 @@ const ErrorService = {
     SUPPLIER_EMAIL_REQUIRED: { code: 'SUPPLIER_EMAIL_REQUIRED', message: 'email supplier is required' },
     SUPPLIER_PHONE_REQUIRED: { code: 'SUPPLIER_PHONE_REQUIRED', message: 'phone supplier is required' },
     SUPPLIER_ADDRESS_REQUIRED: { code: 'SUPPLIER_ADDRESS_REQUIRED', message: 'address supplier is required' },
-    SUPPLIER_ID_REQUIRED: { code: 'SUPPLIER_ID_REQUIRED', message: 'id product is required'},
+    SUPPLIER_ID_REQUIRED: { code: 'SUPPLIER_ID_REQUIRED', message: 'id supplier is required'},
     
     //IMPORT
     IMPORT_CODE_REQUIRED: { code: 'IMPORT_CODE_REQUIRED', message: 'code import is required' },
     IMPORT_DATE_REQUIRED: { code: 'BRAND_TITLE_REQUIRED', message: 'title brand is required' },
     IMPORT_ID_REQUIRED: { code: 'BRAND_ID_REQUIRED', message: 'id brand is required'},
+
+    //USER
+    PASSWORD_IS_NOT_MATCH: { code: 'PASSWORD_IS_NOT_MATCH', message: 'Nhập lại mật khẩu không đúng'},
+    USER_FIRSTNAME_REQUIRED: { code: 'USER_FIRSTNAME_REQUIRED', message: 'first name user is required' },
+    USER_LASTNAME_REQUIRED: { code: 'USER_LASTNAME_REQUIRED', message: 'last name user is required' },
+    USER_EMAIL_REQUIRED: { code: 'USER_EMAIL_REQUIRED', message: 'email user is required' },
+    USER_DATEOFBIRTH_REQUIRED: { code: 'USER_DATEOFBIRTH_REQUIRED', message: 'day of birth user is required' },
+    USER_PHONE_REQUIRED: { code: 'USER_PHONE_REQUIRED', message: 'phone supplier is required' },
+    USER_ADDRESS_REQUIRED: { code: 'USER_ADDRESS_REQUIRED', message: 'address supplier is required' },
+    USER_ID_REQUIRED: { code: 'USER_ID_REQUIRED', message: 'id user required'},
 }
 module.exports = ErrorService;

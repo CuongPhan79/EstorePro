@@ -97,5 +97,17 @@
 	"Tạo đơn nhập hàng": "Tạo đơn nhập hàng",
 	"Mã nhập hàng là trường bắt buộc": "Mã nhập hàng là trường bắt buộc",
 	"Mã nhập hàng tối thiểu 2 ký tự và tối đa 30 ký tự.": "Mã nhập hàng tối thiểu 2 ký tự và tối đa 30 ký tự.",
-	"Mã đơn nhập hàng tối thiểu 2 ký tự và tối đa 30 ký tự.": "Mã đơn nhập hàng tối thiểu 2 ký tự và tối đa 30 ký tự."
+	"Mã đơn nhập hàng tối thiểu 2 ký tự và tối đa 30 ký tự.": "Mã đơn nhập hàng tối thiểu 2 ký tự và tối đa 30 ký tự.",
+	"Thông tin không chính xác": "Thông tin không chính xác",
+	"Họ": "Họ",
+	"Trang chủ": "Trang chủ",
+	"Nhân viên": "Nhân viên",
+	"Ngày sinh": "Ngày sinh",
+	"Họ là trường bắt buộc": "Họ là trường bắt buộc",
+	"Họ tối thiểu 3 ký tự và tối đa 70 ký tự.": "Họ tối thiểu 3 ký tự và tối đa 70 ký tự.",
+	"Tên là trường bắt buộc": "Tên là trường bắt buộc",
+	"Tên tối thiểu 3 ký tự và tối đa 70 ký tự.": "Tên tối thiểu 3 ký tự và tối đa 70 ký tự.",
+	"Ngày sinh không được để trống !": "Ngày sinh không được để trống !",
+	"DD/MM/YYYY": "DD/MM/YYYY",
+	"Ngày tháng không hợp lệ": "Ngày tháng không hợp lệ"
 }

@@ -3,7 +3,8 @@
 
 const fn = {
   fetchData: async options => {
-    return await User.find(options)
+    let users = User.find(options).populate('imports');
+    return users
   },
   fetchDataInOne: async options => {
     return await User.findOne(options)
@@ -68,25 +69,18 @@ const UserService = {
   },
 
   find: async (where, limit, skip, sort) => {
-    sails.log.info(
-      '================================ UserService.find -> where: ================================'
-    );
+    sails.log.info("================================ SupplierService.find -> where: ================================");
     sails.log.info(JSON.stringify(where));
     sails.log.info(limit);
     sails.log.info(skip);
     sails.log.info(sort);
-    where = typeof where === 'object' ? where : {};
-    limit = limit !== 'null' ? limit : 10;
-    skip = skip !== null && typeof skip === 'number' ? skip : 0;
-    sort = (sort !== null && typeof sort === 'object') ? sort : [{ createdAt: 'DESC' }]
-    
-    let Users = await fn.fetchData({
-      where: where,
-      limit: limit,
-      skip: skip,
-      sort: sort
-    });
-    return Users;
+    where = (typeof where === 'object') ? where : {};
+    limit = (limit !== 'null') ? limit : 10;
+    skip = (skip !== null && typeof skip === 'number') ? skip : 0;
+    sort = (sort !== null && typeof sort === 'object') ? sort : [{ createdAt: 'DESC' }];
+
+    let sujects = await User.find({ where: where, limit: limit, skip: skip, sort: sort });
+      return sujects;
   },
 
   count: async where => {

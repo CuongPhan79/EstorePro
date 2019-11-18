@@ -117,5 +117,27 @@ Cloud.setup({
             "args": []
         },
         //-------------------------IMPORT----------------
+        //USER
+        "addUser": {
+            "verb": "POST",
+            "url": "/api/v1/backend/user/add",
+            "args": []
+        },
+        "getUser": {
+            "verb": "GET",
+            "url": "/api/v1/backend/user/get/:id",
+            "args": ["id"]
+        },
+        "editUser": {
+            "verb": "PATCH",
+            "url": "/api/v1/backend/user/edit",
+            "args": []
+        },
+        "editProfile": {
+            "verb": "PATCH",
+            "url": "/api/v1/backend/user/edit",
+            "args": []
+        },
+        //-------------------------USER----------------
     }
 })

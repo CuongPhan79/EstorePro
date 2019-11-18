@@ -61,8 +61,8 @@ ESTOREPRO.login = function () {
                 }
                 //cloud success
                 console.log('----- frmLogin ----- [SUBMIT][END]');
-                if (responseBody.user.isSuperAdmin == true) {
-                    window.location = 'sa/dashboard';
+                if (responseBody.user.isAdmin == true) {
+                    window.location = 'admin/dashboard';
                 } else {
                     window.location = 'dashboard';
                 }
@@ -98,6 +98,14 @@ ESTOREPRO.initialize = function () {
         //------------------------------------------------ 
         case 'backend/import/form':
             curBackendEKP = new IndexFormImportBackendEKP();
+            break;
+        //------------------------------------------------ 
+        case 'backend/account/view-edit-profile':
+            curBackendEKP = new IndexFormAccountBackendEKP();
+            break;
+        //------------------------------------------------ 
+        case 'backend/user/index':
+            curBackendEKP = new IndexListUserBackendEKP();
             break;
         //------------------------------------------------ 
     }      

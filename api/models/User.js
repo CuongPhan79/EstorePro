@@ -38,7 +38,11 @@ module.exports = {
     },
     birthday: {
       type: 'string',
-      example: 'DD/MM/YYYY'
+      example: 'YYYY-MM-DD'
+    },
+    avatar: {
+      type: 'string',
+      defaultsTo: ''
     },
     address: {
       type: 'string',
@@ -47,6 +51,11 @@ module.exports = {
     },
     userType: {
       type: 'number',
+      defaultsTo: 1
+    },
+    status: {
+      type: 'number',
+      defaultsTo: 1
     },
     imports: {
       collection: 'import',

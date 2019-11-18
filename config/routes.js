@@ -45,6 +45,8 @@ module.exports.routes = Object.assign(routes_api.api, {
   //IMPORT
   'GET /backend/import/form': {action: 'backend/import/form'},
 
+  //USER
+  'GET /backend/user/index': {action: 'backend/user/index'},
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

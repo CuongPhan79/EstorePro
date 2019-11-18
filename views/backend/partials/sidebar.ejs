@@ -10,6 +10,7 @@ action = action.replace(/\//g, '-'); //replace '/' by '-';
         <span class="menu-title"><%= __('Tổng quan') %></span>
       </a>
     </li>
+    <%if(userActive.userType==1){%>
     <li
       class="nav-item <%= ( action == 'backend-producttype-index'||action == 'backend-brand-index' || action == 'backend-product-index') ? 'active' : '' %>">
       <a class="nav-link" data-toggle="collapse" href="#tables" aria-controls="tables">
@@ -25,6 +26,8 @@ action = action.replace(/\//g, '-'); //replace '/' by '-';
         </ul>
       </div>
     </li>
+    <%}%>
+    <%if(userActive.userType==1){%>
     <li
       class="nav-item ">
       <a class="nav-link" href="/backend/dashboard">
@@ -32,6 +35,17 @@ action = action.replace(/\//g, '-'); //replace '/' by '-';
         <span class="menu-title"><%= __('Bán hàng') %></span>
       </a>
     </li>
+    <%}%>
+    <%if(userActive.userType==0){%>
+    <li
+      class="nav-item ">
+      <a class="nav-link" href="/backend/user/index">
+        <i class="mdi mdi-account-multiple menu-icon"></i>
+        <span class="menu-title"><%= __('Nhân viên') %></span>
+      </a>
+    </li>
+    <%}%>
+    <%if(userActive.userType==1){%>
      <li
       class="nav-item <%= ( action == 'backend-import-index'||action == 'backend-supplier-index' ) ? 'active' : '' %>">
       <a class="nav-link" data-toggle="collapse" href="#imports" aria-controls="imports">
@@ -46,6 +60,7 @@ action = action.replace(/\//g, '-'); //replace '/' by '-';
         </ul>
       </div>
     </li>
+    <%}%>
     <li
       class="nav-item ">
       <a class="nav-link" href="/backend/setting">

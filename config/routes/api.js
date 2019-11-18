@@ -38,6 +38,13 @@ module.exports.api = {
 
     //IMPORT
     'GET /api/v1/backend/import/seacrh': { controller: 'backend/import/ImportController', action: 'search' },
-    
     'POST /api/v1/backend/import/add': { controller: 'backend/import/ImportController', action: 'add' },
+
+    //USER
+    'POST /api/v1/backend/user/add': { controller: 'backend/user/UserController', action: 'add' },
+    'PATCH /api/v1/backend/user/edit': { controller: 'backend/user/UserController', action: 'edit' },
+    'GET /api/v1/backend/user/get/:id': { controller: 'backend/user/UserController', action: 'get' },
+    'GET /api/v1/backend/user/search': { controller: 'backend/user/UserController', action: 'search' },
+    'PATCH /api/v1/backend/user/trash/:ids': { controller: 'backend/user/UserController', action: 'trash' },
+    
 }
