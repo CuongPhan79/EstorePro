@@ -12,21 +12,28 @@ action = action.replace(/\//g, '-'); //replace '/' by '-';
     </li>
     <%if(userActive.userType==0){%>
     <li
-      class="nav-item <%= ( action == 'backend-producttype-index'||action == 'backend-brand-index' || action == 'backend-product-index') ? 'active' : '' %>">
+      class="nav-item <%= ( action == 'backend-producttype-index'||action == 'backend-brand-index' || action == 'backend-product-index' || action == 'backend-product-form') ? 'active' : '' %>">
       <a class="nav-link" data-toggle="collapse" href="#tables" aria-controls="tables">
         <i class="mdi mdi-cube menu-icon"></i>
         <span class="menu-title"><%= __('Sản phẩm') %></span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="collapse <%= (action == 'backend-producttype-index' || action == 'backend-brand-index' || action == 'backend-product-index') ? 'show' : '' %>" id="tables">
+      <div class="collapse <%= (action == 'backend-producttype-index' || action == 'backend-brand-index' || action == 'backend-product-index' || action == 'backend-product-form') ? 'show' : '' %>" id="tables">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link <%= (action == 'backend-product-index') ? 'active' : '' %>"  href="/backend/product/index">Quản lý sản phẩm</a></li>
+          <li class="nav-item"><a class="nav-link <%= (action == 'backend-product-index' || action == 'backend-product-form') ? 'active' : '' %>"  href="/backend/product/index">Quản lý sản phẩm</a></li>
           <li class="nav-item"><a class="nav-link <%= (action == 'backend-producttype-index') ? 'active' : '' %>"  href="/backend/producttype/index">Loại sản phẩm</a></li>
           <li class="nav-item"><a class="nav-link <%= (action == 'backend-brand-index') ? 'active' : '' %>"  href="/backend/brand/index">Thương hiệu</a></li>            
         </ul>
       </div>
     </li>
     <%}%>
+    <li
+      class="nav-item <%= ( action == 'backend-customer-index') ? 'active' : '' %>">
+      <a class="nav-link" href="/backend/customer/index">
+        <i class="mdi mdi mdi-account-settings menu-icon"></i>
+        <span class="menu-title"><%= __('Khách hàng') %></span>
+      </a>
+    </li>
     <li
       class="nav-item ">
       <a class="nav-link" href="/backend/dashboard">

@@ -49,4 +49,11 @@ module.exports.api = {
     'GET /api/v1/backend/user/search': { controller: 'backend/user/UserController', action: 'search' },
     'PATCH /api/v1/backend/user/trash/:ids': { controller: 'backend/user/UserController', action: 'trash' },
     'POST /api/v1/backend/user/uploadThumbnail': { controller: 'backend/user/UserController', action: 'uploadThumbnail' },
+
+    //CUSTOMER
+    'POST /api/v1/backend/customer/add': { controller: 'backend/customer/CustomerController', action: 'add' },
+    'PATCH /api/v1/backend/customer/edit': { controller: 'backend/customer/CustomerController', action: 'edit' },
+    'GET /api/v1/backend/customer/get/:id': { controller: 'backend/customer/CustomerController', action: 'get' },
+    'GET /api/v1/backend/customer/search': { controller: 'backend/customer/CustomerController', action: 'search' },
+    'PATCH /api/v1/backend/customer/trash/:ids': { controller: 'backend/customer/CustomerController', action: 'trash' },
 }

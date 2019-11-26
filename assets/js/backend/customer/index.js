@@ -1,4 +1,4 @@
-class IndexListUserBackendEKP extends BaseBackendEKP {
+class IndexListCustomerBackendEKP extends BaseBackendEKP {
 	constructor() {
 		super();
 		this.initialize();
@@ -7,17 +7,17 @@ class IndexListUserBackendEKP extends BaseBackendEKP {
 	initialize() {
 		//DO NOT LOAD UNNESSESARY CLASS
 		//Init form + list if page have BOTH  
-		this.list = new ListIndexUserBackendEKP();
-		this.form = new FormIndexUserBackendEKP();
+		this.list = new ListIndexCustomerBackendEKP();
+		this.form = new FormIndexCustomerBackendEKP();
 	}
 }
 
 
-class ListIndexUserBackendEKP {
+class ListIndexCustomerBackendEKP {
 	constructor(opts) {
 		_.extend(this, opts);
 
-		this.tblId = 'tblUser';
+		this.tblId = 'tblCustomer';
 		this.tableObj = $('#' + this.tblId);
 		this.checkAll = null;
         this.listChecked = '';
@@ -65,7 +65,7 @@ class ListIndexUserBackendEKP {
 			}
 		}).then((value) => {
 			if (value) {
-				Cloud.trashUser.with({ ids: id }).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+				Cloud.trashCustomer.with({ ids: id }).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
 					if (err) {
 						console.log(err);
 						return;
@@ -101,15 +101,16 @@ class ListIndexUserBackendEKP {
 			},
 			"processing": true,
 			"serverSide": true,
-			"ajax": `/api/v1/backend/user/search`,
+			"ajax": `/api/v1/backend/customer/search`,
 			//Add column data (JSON) mapping from AJAX to TABLE
 			"columns": [
-                { "data": "name"} ,
-				{ "data": "emailAddress" },
+                { "data": "name"},
+                { "data": "gender"},
+				        { "data": "emailAddress" },
                 { "data": "birthday" },
                 { "data": "phone" },
                 { "data": "address" },
-				{ "data": "tool" },
+				        { "data": "tool" },
 			],
 			//Define first column without order
 			columnDefs: [
@@ -137,7 +138,7 @@ class ListIndexUserBackendEKP {
         e.preventDefault();
         let id = $(this).attr('data-id');
         //get AJAX data
-        Cloud.getUser.with({ id: id }).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+        Cloud.getCustomer.with({ id: id }).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
           if (err) {
             console.log(err);
             return;
@@ -160,10 +161,10 @@ class ListIndexUserBackendEKP {
 		});
 	}
 }
-class FormIndexUserBackendEKP {
+class FormIndexCustomerBackendEKP {
     constructor(opts) {
       _.extend(this, opts);
-      this.formId = 'formUser';
+      this.formId = 'formCustomer';
       this.formObj = $('#' + this.formId);
       this.title = $('.modal-title');
       this.input1 = $('#firstName');
@@ -186,8 +187,8 @@ class FormIndexUserBackendEKP {
         this.btnReset = this.formObj.find('button[type="reset"]');
   
         this.messages = {
-          headlineAdd: 'Thêm nhân viên',
-          headlineUpdate: 'Cập nhật nhân viên',
+          headlineAdd: 'Thêm khách hàng',
+          headlineUpdate: 'Cập nhật khách hàng',
           addSuccess: 'Thêm mới thành công',
           editSuccess: 'Cập nhật thành công.',
           error: 'Có lỗi xảy ra',
@@ -245,7 +246,7 @@ class FormIndexUserBackendEKP {
       let _this = this;
       _this.formObj.formValidation({
         button: {
-          selector: '#btnFormUser',
+          selector: '#btnFormCustomer',
           disabled: 'disabled'
         },
         fields: {
@@ -301,7 +302,7 @@ class FormIndexUserBackendEKP {
           //reset form validator
           if (manner === 'edit') {
             tmpData.id = _this.formObj.attr('data-edit-id');
-            Cloud.editUser.with(tmpData).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+            Cloud.editCustomer.with(tmpData).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
               if(err){
                 _this.alert.removeClass('d-none').addClass("alert-fill-danger").html(_this.messages.error);
                 setTimeout(function(){
@@ -324,13 +325,13 @@ class FormIndexUserBackendEKP {
               //cloud success
             });
           } else {
-            Cloud.addUser.with(tmpData).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+            Cloud.addCustomer.with(tmpData).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
               if(err){
                 _this.alert.removeClass('d-none').addClass("alert-fill-danger").html(_this.messages.error);
                 setTimeout(function(){
                 _this.alert.removeClass('alert-filldanger').addClass("d-none");
                 }, 3000);
-              }else {
+              } else {
                 if (responseBody.message) {
                   _this.alert.removeClass('d-none').addClass("alert-fill-warning").html(responseBody.message);
                   setTimeout(function(){
@@ -368,10 +369,19 @@ class FormIndexUserBackendEKP {
           _this.formObj.attr('data-edit-id', datas.id);
           //Update form fields (input + textarea) base on name of field
           _.each(datas, (value, key) => {
-            if (key !== 'status') {
+            if (key !== 'gender') {
               //Status is radiobuton -> no update
                 _this.formObj.find('[name="' + key + '"]').val(value);
-            } 
+            } else {
+              // Update status radiobutton
+              if (value == 1) {
+                _this.formObj.find('#genderMale')[0].checked = true;
+                _this.formObj.find('#genderFemale')[0].checked = false;
+              } else {
+                _this.formObj.find('#genderMale')[0].checked = false;
+                _this.formObj.find('#genderFemale')[0].checked = true;
+              }
+          }
           });
     
           //Handle static data like title, headline, button when change from add to edit and otherwise
@@ -401,5 +411,4 @@ class FormIndexUserBackendEKP {
       //End handle static data
       
     }
-  
 } 

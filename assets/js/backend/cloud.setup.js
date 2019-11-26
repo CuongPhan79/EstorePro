@@ -149,5 +149,22 @@ Cloud.setup({
             "args": []
         },
         //-------------------------USER----------------
+        //CUSTOMER
+        "addCustomer": {
+            "verb": "POST",
+            "url": "/api/v1/backend/customer/add",
+            "args": []
+        },
+        "getCustomer": {
+            "verb": "GET",
+            "url": "/api/v1/backend/customer/get/:id",
+            "args": ["id"]
+        },
+        "editCustomer": {
+            "verb": "PATCH",
+            "url": "/api/v1/backend/customer/edit",
+            "args": []
+        },
+        //-------------------------CUSTOMER----------------
     }
 })

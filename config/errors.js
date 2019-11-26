@@ -36,5 +36,12 @@ const ErrorService = {
     USER_PHONE_REQUIRED: { code: 'USER_PHONE_REQUIRED', message: 'phone supplier is required' },
     USER_ADDRESS_REQUIRED: { code: 'USER_ADDRESS_REQUIRED', message: 'address supplier is required' },
     USER_ID_REQUIRED: { code: 'USER_ID_REQUIRED', message: 'id user required'},
+
+    //CUSTOMER
+    CUSTOMER_NAME_REQUIRED: { code: 'CUSTOMER_NAME_REQUIRED', message: 'name customer is required' },
+    CUSTOMER_EMAIL_REQUIRED: { code: 'CUSTOMER_EMAIL_REQUIRED', message: 'email customer is required' },
+    CUSTOMER_PHONE_REQUIRED: { code: 'CUSTOMER_PHONE_REQUIRED', message: 'phone customer is required' },
+    CUSTOMER_ADDRESS_REQUIRED: { code: 'CUSTOMER_ADDRESS_REQUIRED', message: 'address customer is required' },
+    CUSTOMER_ID_REQUIRED: { code: 'CUSTOMER_ID_REQUIRED', message: 'id customer is required'},
 }
 module.exports = ErrorService;
