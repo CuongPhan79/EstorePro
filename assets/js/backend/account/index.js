@@ -41,6 +41,7 @@ class FormIndexAccountBackendEKP {
       let _this = this;
         _this.initValidation();
         _this.initUpload();
+        _this.initUploadFile();
     }
     initUpload() {
         $('.dropify').dropify();
@@ -91,6 +92,9 @@ class FormIndexAccountBackendEKP {
           let tmpData = {};
           _.each(formData, (item) => {         
             tmpData[item.name] = item.value;
+            if (_this.uploadedFiles) {
+              tmpData['thumbnail'] = _this.uploadedFiles;
+            }
           });
           tmpData.id = _this.formObj.attr('data-id');
           //CALL AJAX ADD IMPORT
@@ -121,6 +125,72 @@ class FormIndexAccountBackendEKP {
         })
     }
         
+    initUploadFile() {
+      let _this = this;
+  
+      let inputFiles = _this.formObj.find('[type=file]');
+      if (inputFiles.length) {
+        if (_this.uploadedFiles == undefined) {
+          _this.uploadedFiles = null;
+        }
+        inputFiles.each((i, input) => {
+          $(input).on('change', (e) => {
+            let _file = e.currentTarget.files[0];
+            let _ext = _this.getFileExtension(_file, ['.png', '.jpg', '.jpeg', '.gif']);
+            if (_file && _this.checkValidFile(_file, ['.png', '.jpg', '.jpeg', '.gif'])) {
+              let _data = {
+                thumbnail: _file,
+                ext: _ext
+              };
+              Cloud.uploadUserThumbnail.with(_data).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+                if (err) {
+                  console.log(err);
+                  //_this.error.removeClass('hidden');
+                  return;
+                }
+                //save thumb data to object uploadedFiles
+                console.log(responseBody);
+                _this.uploadedFiles = responseBody;
+                
+              })
+              let _input = $(e.currentTarget);
+              _input.parents('.fileinput').parent().prev().addClass('loading');
+            } else if (_file != undefined) {
+              $(e.currentTarget).parents('.fileinput').find('.has-error').html('Validation.Message.Extension');
+            } else {
+              $(e.currentTarget).parents('.fileinput').find('.has-error').html('');
+            }
+          });
+        });
+      }
+    }
+    checkValidFile(file, _ext) {
+      let _this = this;
+      let valid = false;
+      _.each(_ext, (ext, i) => {
+        // file = {
+        //   lastModified: 1521080262000,
+        //   name: "icon-clock.png",
+        //   size:1882,
+        //   type: "image/png",
+        //   webkitRelativePath: ""
+        // }
+        if (file.name.indexOf(ext) != -1) {
+          valid = true;
+        }
+      });
+      return valid;
+    }
+    getFileExtension(file, _ext) {
+      let _this = this;
+      let pos = '';
+      _.each(_ext, (ext, i) => {
+        if (file.name.indexOf(ext) != -1) {
+          pos = ext;
+        }
+      });
+      return pos;
+    }
 
   
 } 

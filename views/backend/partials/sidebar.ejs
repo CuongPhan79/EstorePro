@@ -4,13 +4,13 @@ action = action.replace(/\//g, '-'); //replace '/' by '-';
 %>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
-    <li class="nav-item">
+    <li class="nav-item <%= ( action == 'backend-dashboard-index' ) ? 'active' : '' %>" >
       <a class="nav-link" href="/backend/dashboard">
         <i class="mdi mdi-home menu-icon"></i>
         <span class="menu-title"><%= __('Tổng quan') %></span>
       </a>
     </li>
-    <%if(userActive.userType==1){%>
+    <%if(userActive.userType==0){%>
     <li
       class="nav-item <%= ( action == 'backend-producttype-index'||action == 'backend-brand-index' || action == 'backend-product-index') ? 'active' : '' %>">
       <a class="nav-link" data-toggle="collapse" href="#tables" aria-controls="tables">
@@ -27,7 +27,6 @@ action = action.replace(/\//g, '-'); //replace '/' by '-';
       </div>
     </li>
     <%}%>
-    <%if(userActive.userType==1){%>
     <li
       class="nav-item ">
       <a class="nav-link" href="/backend/dashboard">
@@ -35,32 +34,31 @@ action = action.replace(/\//g, '-'); //replace '/' by '-';
         <span class="menu-title"><%= __('Bán hàng') %></span>
       </a>
     </li>
-    <%}%>
     <%if(userActive.userType==0){%>
     <li
-      class="nav-item ">
+      class="nav-item <%= ( action == 'backend-user-index') ? 'active' : '' %>">
       <a class="nav-link" href="/backend/user/index">
         <i class="mdi mdi-account-multiple menu-icon"></i>
         <span class="menu-title"><%= __('Nhân viên') %></span>
       </a>
     </li>
     <%}%>
-    <%if(userActive.userType==1){%>
      <li
-      class="nav-item <%= ( action == 'backend-import-index'||action == 'backend-supplier-index' ) ? 'active' : '' %>">
+      class="nav-item <%= ( action == 'backend-import-form'||action == 'backend-supplier-index' ) ? 'active' : '' %>">
       <a class="nav-link" data-toggle="collapse" href="#imports" aria-controls="imports">
         <i class="mdi mdi-ambulance menu-icon" ></i>
         <span class="menu-title"><%= __('Nhập hàng') %></span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="collapse <%= (action == 'backend-import-index' || action == 'backend-supplier-index') ? 'show' : '' %>" id="imports">
+      <div class="collapse <%= (action == 'backend-import-form' || action == 'backend-supplier-index') ? 'show' : '' %>" id="imports">
         <ul class="nav flex-column sub-menu">
+          <%if(userActive.userType==0){%>
           <li class="nav-item"><a class="nav-link <%= (action == 'backend-supplier-index') ? 'active' : '' %>"  href="/backend/supplier/index">Nhà cung cấp</a></li> 
-          <li class="nav-item"><a class="nav-link <%= (action == 'backend-import-index') ? 'active' : '' %>"  href="/backend/import/index">Hóa đơn nhập</a></li>         
+          <%}%>
+          <li class="nav-item"><a class="nav-link <%= (action == 'backend-import-form') ? 'active' : '' %>"  href="/backend/import/form">Hóa đơn nhập</a></li>         
         </ul>
       </div>
     </li>
-    <%}%>
     <li
       class="nav-item ">
       <a class="nav-link" href="/backend/setting">

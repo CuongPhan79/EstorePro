@@ -1,4 +1,6 @@
 const ErrorService = require('../../../../config/errors');
+const Sharp = require('sharp');
+const moment = require('moment');
 module.exports = {
     add: async (req, res) => {
         sails.log.info("================================ UserController.add => START ================================");
@@ -14,7 +16,7 @@ module.exports = {
         if (!params.emailAddress || !params.emailAddress.trim().length) {
             return res.badRequest(ErrorService.USER_EMAIL_REQUIRED);
         }
-        if (!params.dateOfBirth || !params.dateOfBirth.trim().length) {
+        if (!params.birthday || !params.birthday.trim().length) {
         return res.badRequest(ErrorService.USER_DATEOFBIRTH_REQUIRED);
         }
         if (!params.phone || !params.phone.trim().length) {
@@ -33,7 +35,7 @@ module.exports = {
             firstName: params.firstName,
             lastName: params.lastName,
             emailAddress: params.emailAddress,
-            dateOfBirth: params.dateOfBirth,
+            birthday: params.birthday,
             phone: params.phone,
             address:params.address
         };
@@ -54,7 +56,8 @@ module.exports = {
             emailAddress: params.emailAddress,
             birthday: params.birthday,
             phone: params.phone,
-            address:params.address
+            address:params.address,
+            avatar: params.thumbnail
         };
         if (params.password) {
           data.password = await sails.helpers.passwords.hashPassword(params.password);
@@ -88,6 +91,53 @@ module.exports = {
         }
         // RETURN DATA TITLE
         return res.json(dataObj);
+    },
+    uploadThumbnail: async (req, res) => {
+      sails.log.info("================================ UserController.uploadThumbnail => START ================================");
+      let thumbnail = {};
+      if (req.file('file')) {
+        let fileUploaded = await sails.helpers.uploadFile.with({
+          req: req,
+          file: 'thumbnail'
+        });
+        if (fileUploaded.length) {
+          let filename = '';
+          for (let file of fileUploaded) {
+            // sails.log('fileUploaded', file);
+            filename = file.fd.replace(/^.*[\\\/]/, '');
+            filename = filename.split('.');
+  
+            let uploadConfig = sails.config.custom.UPLOAD;
+            thumbnail.sizes = {};
+            for (let size of uploadConfig.SIZES) {
+              let destFileName = filename[0] + '_' + size.name + '.' + filename[1];
+              if (size.type == 'origin') {
+                Sharp(file.fd).resize(size.width)
+                  .toFile(require('path').resolve(uploadConfig.PATH_FOLDER, 'assets/uploads/') + '/' + moment().format('YYYY/MM') + '/' + destFileName)
+                  .then((info) => {}).catch((err) => { sails.log(err); });
+                thumbnail.path = '/uploads/' + moment().format('YYYY/MM') + '/' + destFileName;
+              } else {
+                let type = size.type;
+                Sharp(file.fd).resize(size.width, size.height)
+                  .toFile(require('path').resolve(uploadConfig.PATH_FOLDER, 'assets/uploads/') + '/' + moment().format('YYYY/MM') + '/' + destFileName)
+                  .then((info) => { }).catch((err) => { sails.log(err); });
+                thumbnail.sizes[type] = {
+                  width: size.width, height: size.height,
+                  path: '/uploads/' + moment().format('YYYY/MM') + '/' + destFileName
+                };
+              }
+            }
+          }
+  
+          let dataMedia = {
+            title: filename.join('.'),
+            thumbnail: thumbnail
+          }
+          let mediaObj = await MediaService.add(dataMedia);
+          return res.json(mediaObj.thumbnail.sizes.thumbnail.path);
+        }
+      }
+      return res.json('');
     },
     search: async (req, res) => {
         sails.log.info("================================ UserController.search => START ================================");
@@ -129,9 +179,8 @@ module.exports = {
                 fullName =
                 `<div class="d-flex align-items-center">
                     <img src="${user.avatar}" width="50px"  class="img-sm rounded-circle">
-                    <h6>${user.fullName}</h6>
+                    <h6>${user.firstName} ${user.lastName}</h6>
                     </div>`;
-                
             }
             let tmpData = {};
             tmpData.name = fullName;

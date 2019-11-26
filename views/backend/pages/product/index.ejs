@@ -53,10 +53,10 @@
               </li>
               </ul>
               <div class="md-3">
-                <button id="btnAdd" type="button" class="btn btn-primary btn-icon-text btn-sm text-uppercase"
-                  data-toggle="modal" data-target="#modal-edit">
+                <a id="btnAdd"  class="btn btn-primary btn-icon-text btn-sm text-uppercase"
+                  href="form">
                   <i class="mdi mdi-plus"></i>Thêm sản phẩm
-                </button>
+              </a>
               </div>
       </div>
       <div class="col-md-12 grid-margin d-flex justify-content-between">
@@ -69,155 +69,7 @@
 
   </div>
 </div>
-<div class="modal fade modal-custom" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="modal-edit" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modal-title-product">Thêm sản phẩm</h5>
-        <button type="button" id="btnCloseModal" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><i class="mdi mdi-close-circle-outline"></i></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form autocomplete="off" id="formProduct" class="" data-fv-framework="bootstrap4"
-          data-fv-icon-valid="glyphicon glyphicon-ok" data-fv-icon-invalid="glyphicon glyphicon-remove"
-          data-fv-icon-validating="glyphicon glyphicon-refresh" data-fv-live="enabled" data-manner="add">
-          <div class="form-group row align-items-md-center">
-            <label class="col-md-3">Mã sản phẩm</label>
-            <div class="col-md-9">
-            <input type="text" class="form-control" placeholder="B001" name="code" id="code" data-fv-notempty="true"
-            data-fv-notempty-message="<%= __('Mã sản phẩm là trường bắt buộc') %>" data-fv-stringlength="true"
-            data-fv-stringlength-min="2" data-fv-stringlength-max="30"
-            data-fv-stringlength-message="<%= __('Mã sản phẩm tối thiểu 2 ký tự và tối đa 30 ký tự.') %>" >
-            </div>
-          </div>
-          <div class="form-group row align-items-md-center">
-            <label class="col-md-3">Tiêu đề</label>
-            <div class="col-md-9">
-              <input type="text" id="title" class="form-control" name="title" data-fv-notempty="true"
-                data-fv-notempty-message="<%= __('Tên loại thương hiệu là trường bắt buộc') %>"
-                data-fv-stringlength="true" data-fv-stringlength-min="3" data-fv-stringlength-max="70"
-                data-fv-stringlength-message="<%= __('Tên thương hiệu tối thiểu 3 ký tự và tối đa 70 ký tự.') %>" />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group row align-items-md-center">
-                <label class="col-md-3">Giá nhập</label>
-                <div class="col-md-9">
-                  <div class="input-group">
-                    <input type="number" id="entryPrice" class="form-control" name="entryPrice" data-fv-message="<%= __('Giá nhập là số') %>"
-                    data-fv-notempty="true" data-fv-notempty-message="<%= __('Giá nhập là trường bắt buộc') %>"
-                    max="10000000" min="0" data-fv-lessThan-message="<%= __('Số tiền tối đa là 10000000') %>" data-fv-greaterThan-message="<%= __('Số tiền tối thiểu là 0') %>" required>
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">đ
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group row align-items-md-center">
-                <label class="col-md-3">Giá bán</label>
-                <div class="col-md-9">
-                  <div class="input-group">
-                    <input type="number" id="price" class="form-control" name="price" data-fv-message="<%= __('Giá bán là số') %>"
-                    data-fv-notempty="true" data-fv-notempty-message="<%= __('Giá bán là trường bắt buộc') %>"
-                    max="10000000" min="0" data-fv-lessThan-message="<%= __('Số tiền tối đa là 12') %>" data-fv-greaterThan-message="<%= __('Số tiền tối thiểu là 0') %>" required>
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">đ
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group row align-items-md-center">
-                <label class="col-md-3">Loại sản phẩm</label>
-                <div class="col-md-9">
-                    <select id="productTypebox" name="productTypebox" class="form-control js-process-basic-single  select2-single"
-                      data-placeholder="<%= __('Choose') %>" single="single" >
-                        <% _.each(productTypes, function (productType, index) { %>
-                        <option value="<%= productType.id %>">
-                          <%= productType.title %>
-                        </option>
-                        <% }) %> 
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group row align-items-md-center">
-                <label class="col-md-3">Thương hiệu</label>
-                <div class="col-md-9">
-                    <select id="brandbox" name="brandbox" class="form-control js-process-basic-single  select2-single"
-                      data-placeholder="<%= __('Choose') %>" single="single" >
-                        <% _.each(brands, function (brand, index) { %>
-                        <option value="<%= brand.id %>">
-                          <%= brand.title %>
-                        </option>
-                        <% }) %> 
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="form-group row align-items-md-center">
-            <label class="col-md-3">Mô tả</label>
-            <div class="col-md-9">
-              <textarea id="description" class="form-control" rows="2" name="description"></textarea>
-            </div>
-          </div>
-          <div class="form-group row align-items-md-center">
-            <label class="col-md-3">Trạng thái</label>
-            <div class="col-md-9">
-              <ul class="list-unstyled list-inline">
-                <li class="list-inline-item">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input id="statusActive" type="radio" class="form-check-input" name="status" checked
-                        value="<%= STATUS.ACTIVE %>">
-                      <i class="input-helper"></i>
-                      <%= __('Sử dụng') %>
-                    </label>
-                  </div>
-                </li>
-                <li class="list-inline-item">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input id="statusDraft" type="radio" class="form-check-input" name="status"
-                        value="<%= STATUS.DRAFT %>">
-                      <i class="input-helper"></i>
-                      <%= __('Lưu tạm') %>
-                    </label>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="alert d-none" style="text-align:center" role="alert">
-            <i class="mdi mdi-alert-circle"></i>
-          </div>
-          <div class="modal-footer row-button-fluid">
-            <button type="reset" class="btn btn-light" data-dismiss="modal"
-              onclick="window.location.reload()">Hủy</button>
-            <button id="btnFormProduct" type="submit" class="btn btn-primary waves-effect waves-classic">
-              <%= __('Thêm mới') %>
-              <div hidden>
-                <%= __('Cập nhật')%>
-              </div>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 
 

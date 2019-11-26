@@ -13,8 +13,11 @@
       
         <li class="nav-item nav-profile dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-            <img src="/images/avatar.png"
-      alt="profile">
+            <%if(userActive.avatar){%>
+              <img src=<%=userActive.avatar%> alt="profile">
+            <%}else{%>
+              <img src="/images/avatar.png" alt="profile">
+            <%}%>
       <span class="nav-profile-name"><%=userActive.firstName%> <%=userActive.lastName%></span>
       </a>
       <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">

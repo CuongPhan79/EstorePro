@@ -118,7 +118,7 @@ class ListIndexUserBackendEKP {
 					"targets": [1, 2, 3, 4, 5]
 				}
 			],
-			"order": [[0, "asc"]],
+			"order": [],
 			"iDisplayLength": 10,
 			"aLengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
 			"pagingType": "numbers",
@@ -148,6 +148,7 @@ class ListIndexUserBackendEKP {
           //Render data from response to form
           _currentForm.renderFormData('edit', _data);
           $('.js-process-basic-multiple').select2();
+          $('#emailAddress').attr('readonly', true);
         })
       });
       //END END ONCLICK EDIT LINK
@@ -353,7 +354,7 @@ class FormIndexUserBackendEKP {
         });
         
     }
-  
+    
     //Function render FORM DATA from AJAX
     //@param {String} status Form status: add or edit
     //@param {String} datas JSON data from AJAX

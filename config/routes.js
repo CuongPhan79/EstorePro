@@ -35,6 +35,8 @@ module.exports.routes = Object.assign(routes_api.api, {
 
   //PRODUCT
   'GET /backend/product/index': { action: 'backend/product/index'},
+  'GET /backend/product/form': { action: 'backend/product/form'},
+  'GET /backend/product/form/:id': { action: 'backend/product/form'},
 
   //SUPPLIER
   'GET /backend/supplier/index': { action: 'backend/supplier/index'},

@@ -41,5 +41,36 @@ module.exports.custom = {
     SCHEDULE: 2,
     TRASH: 3,
     DONE: 4
+  },
+  UPLOAD: {
+    EXTENSION: ['.png', '.jpg', '.jpeg', '.gif', '.heic'],
+    AVATAR: {
+      width: 215,
+      height: 310,
+      name: 'avatar'
+    },
+    SIZES: [
+      {
+        width: 1280, height: 'auto',
+        name: 'origin',
+        type: 'origin'
+      },
+      {
+        width: 150, height: 150,
+        name: '150x150',
+        type: 'thumbnail'
+      },
+      // {
+      //   width: 240, height: 135,
+      //   name: '240x135',
+      //   type: 'medium'
+      // },
+      // {
+      //   width: 400, height: 270,
+      //   name: '400x270',
+      //   type: 'medium_large'
+      // }
+    ],
+    PATH_FOLDER: process.env.PATH_FOLDER || '/HK1Nam4/TLCN/EstorePro/' 
   }
 };

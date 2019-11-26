@@ -1,3 +1,5 @@
+const Sharp = require('sharp');
+const moment = require('moment');
 const ErrorService = require('../../../../config/errors');
 module.exports = {
   add: async (req, res) => {
@@ -16,15 +18,16 @@ module.exports = {
     if (code) return res.ok({message: 'Mã sản phẩm bị trùng'});
     // PREPARE DATA
     const newData = {
-    code: params.code,
-    title: params.title, // REQUIRED
-    status: params.status, // REQUIRED
-    entryPrice: params.entryPrice,
-    price: params.price,
-    brand: params.brandbox,
-    productType: params.productTypebox,
-    number: 0,
-    description: params.description,
+      code: params.code,
+      title: params.title, // REQUIRED
+      status: params.status, // REQUIRED
+      entryPrice: params.entryPrice,
+      image: params.thumbnail,
+      price: params.price,
+      brand: params.brandbox,
+      productType: params.productTypebox,
+      number: 0,
+      description: params.description,
     };
     // ADD NEW DATA 
     const newProduct = await ProductService.add(newData);
@@ -75,6 +78,7 @@ module.exports = {
       title: params.title, // REQUIRED
       status: params.status, // REQUIRED
       entryPrice: params.entryPrice,
+      image: params.thumbnail,
       price: params.price,
       brand: params.brandbox,
       productType: params.productTypebox,
@@ -158,9 +162,24 @@ module.exports = {
   //RESPONSE
   let resProduct= []; 
   for (let product of arrObjProduct) {
+    let path = "/images/product.png";
+    let title = "";
+    title =
+        `<div class="d-flex align-items-center">
+            <img src="${path}" alt="profile" class="img-sm rounded-circle">
+            <h6>${product.title}</h6>
+        </div>`;
+    if (product.image && product.image.trim().length) {
+        title =
+        `<div class="d-flex align-items-center">
+            <img src="${product.image}" width="50px"  class="img-sm rounded-circle">
+            <h6>${product.title}</h6>
+            </div>`;
+    }
     let tmpData = {};
+    product.url= '/backend/product/form/';
     tmpData.id = '<input class="js-checkbox-item" type="checkbox" value="' + product.id + '">';
-    tmpData.title = product.title;
+    tmpData.title = title;
     tmpData.code = product.code;
     tmpData.productType = product.productType.title ? product.productType.title : '-';
     tmpData.brand = product.brand.title ? product.brand.title : '-';
@@ -241,5 +260,52 @@ module.exports = {
     //END RESPONSE
     let totalProduct = await ProductService.count(where);
     return res.ok({ draw: draw, recordsTotal: totalProduct, recordsFiltered: totalProduct, data: resProduct });
+  },
+  uploadThumbnail: async (req, res) => {
+    sails.log.info("================================ ProductController.uploadThumbnail => START ================================");
+    let thumbnail = {};
+    if (req.file('file')) {
+      let fileUploaded = await sails.helpers.uploadFile.with({
+        req: req,
+        file: 'thumbnail'
+      });
+      if (fileUploaded.length) {
+        let filename = '';
+        for (let file of fileUploaded) {
+          // sails.log('fileUploaded', file);
+          filename = file.fd.replace(/^.*[\\\/]/, '');
+          filename = filename.split('.');
+
+          let uploadConfig = sails.config.custom.UPLOAD;
+          thumbnail.sizes = {};
+          for (let size of uploadConfig.SIZES) {
+            let destFileName = filename[0] + '_' + size.name + '.' + filename[1];
+            if (size.type == 'origin') {
+              Sharp(file.fd).resize(size.width)
+                .toFile(require('path').resolve(uploadConfig.PATH_FOLDER, 'assets/uploads/') + '/' + moment().format('YYYY/MM') + '/' + destFileName)
+                .then((info) => {}).catch((err) => { sails.log(err); });
+              thumbnail.path = '/uploads/' + moment().format('YYYY/MM') + '/' + destFileName;
+            } else {
+              let type = size.type;
+              Sharp(file.fd).resize(size.width, size.height)
+                .toFile(require('path').resolve(uploadConfig.PATH_FOLDER, 'assets/uploads/') + '/' + moment().format('YYYY/MM') + '/' + destFileName)
+                .then((info) => { }).catch((err) => { sails.log(err); });
+              thumbnail.sizes[type] = {
+                width: size.width, height: size.height,
+                path: '/uploads/' + moment().format('YYYY/MM') + '/' + destFileName
+              };
+            }
+          }
+        }
+
+        let dataMedia = {
+          title: filename.join('.'),
+          thumbnail: thumbnail
+        }
+        let mediaObj = await MediaService.add(dataMedia);
+        return res.json(mediaObj.thumbnail.sizes.thumbnail.path);
+      }
     }
+    return res.json('');
+  },
 }

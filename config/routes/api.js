@@ -27,6 +27,8 @@ module.exports.api = {
     'GET /api/v1/backend/product/search2': { controller: 'backend/product/ProductController', action: 'search2' },
     'PATCH /api/v1/backend/product/trash/:ids': { controller: 'backend/product/ProductController', action: 'trash' },
     'PATCH /api/v1/backend/product/delete/:id': { controller: 'backend/product/ProductController', action: 'delete' },
+    'POST /api/v1/backend/product/uploadThumbnail': { controller: 'backend/product/ProductController', action: 'uploadThumbnail' },
+    
 
     // SUPPERLIER
     'POST /api/v1/backend/supplier/add': { controller: 'backend/supplier/SupplierController', action: 'add' },
@@ -46,5 +48,5 @@ module.exports.api = {
     'GET /api/v1/backend/user/get/:id': { controller: 'backend/user/UserController', action: 'get' },
     'GET /api/v1/backend/user/search': { controller: 'backend/user/UserController', action: 'search' },
     'PATCH /api/v1/backend/user/trash/:ids': { controller: 'backend/user/UserController', action: 'trash' },
-    
+    'POST /api/v1/backend/user/uploadThumbnail': { controller: 'backend/user/UserController', action: 'uploadThumbnail' },
 }

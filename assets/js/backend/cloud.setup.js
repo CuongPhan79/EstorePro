@@ -86,6 +86,11 @@ Cloud.setup({
             "url": "/api/v1/backend/product/trash/:ids",
             "args": ["id"]
         },
+        "uploadProductThumbnail": {
+            "verb": "POST",
+            "url": "/api/v1/backend/product/uploadThumbnail",
+            "args": []
+        },
         //-------------------------PRODUCTTYPE----------------
 
         //SUPPLIER
@@ -136,6 +141,11 @@ Cloud.setup({
         "editProfile": {
             "verb": "PATCH",
             "url": "/api/v1/backend/user/edit",
+            "args": []
+        },
+        "uploadUserThumbnail": {
+            "verb": "POST",
+            "url": "/api/v1/backend/user/uploadThumbnail",
             "args": []
         },
         //-------------------------USER----------------

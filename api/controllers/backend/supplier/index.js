@@ -13,7 +13,9 @@ module.exports = {
       if (!this.req.me) {
         throw { redirect: '/backend/login' };
       }
-
+      if (this.req.me.userType != 0) {
+        throw { redirect: '/backend/dashboard' };
+      }
       let totalActive = await SupplierService.count({ status: sails.config.custom.STATUS.ACTIVE });
       let totalDraft = await SupplierService.count({ status: sails.config.custom.STATUS.DRAFT});
       let totalTrash = await SupplierService.count({ status: sails.config.custom.STATUS.TRASH});

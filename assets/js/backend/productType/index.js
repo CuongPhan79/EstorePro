@@ -141,7 +141,7 @@ class ListIndexProductTypeBackendEKP {
 					"targets": [0, -3, -2, -1]
 				}
 			],
-			"order": [[1, "asc"]],
+			"order": [],
 			"iDisplayLength": 10,
 			"aLengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
 			//"buttons": ['copy', 'excel', 'csv', 'pdf', 'print'],
