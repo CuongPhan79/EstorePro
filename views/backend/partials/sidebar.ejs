@@ -35,8 +35,8 @@ action = action.replace(/\//g, '-'); //replace '/' by '-';
       </a>
     </li>
     <li
-      class="nav-item ">
-      <a class="nav-link" href="/backend/dashboard">
+      class="nav-item <%= ( action == 'backend-order-form') ? 'active' : '' %>">
+      <a class="nav-link" href="/backend/order/form">
         <i class="mdi mdi-cart menu-icon"></i>
         <span class="menu-title"><%= __('Bán hàng') %></span>
       </a>
@@ -53,7 +53,7 @@ action = action.replace(/\//g, '-'); //replace '/' by '-';
      <li
       class="nav-item <%= ( action == 'backend-import-form'||action == 'backend-supplier-index' ) ? 'active' : '' %>">
       <a class="nav-link" data-toggle="collapse" href="#imports" aria-controls="imports">
-        <i class="mdi mdi-ambulance menu-icon" ></i>
+        <i class="mdi mdi-truck-delivery menu-icon" ></i>
         <span class="menu-title"><%= __('Nhập hàng') %></span>
         <i class="menu-arrow"></i>
       </a>

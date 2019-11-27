@@ -116,7 +116,7 @@ class ListIndexCustomerBackendEKP {
 			columnDefs: [
 				{
 					"orderable": false,
-					"targets": [1, 2, 3, 4, 5]
+					"targets": [ 2, 3, 4, 5, 6]
 				}
 			],
 			"order": [],

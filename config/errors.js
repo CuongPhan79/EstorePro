@@ -24,8 +24,13 @@ const ErrorService = {
     
     //IMPORT
     IMPORT_CODE_REQUIRED: { code: 'IMPORT_CODE_REQUIRED', message: 'code import is required' },
-    IMPORT_DATE_REQUIRED: { code: 'BRAND_TITLE_REQUIRED', message: 'title brand is required' },
-    IMPORT_ID_REQUIRED: { code: 'BRAND_ID_REQUIRED', message: 'id brand is required'},
+    IMPORT_DATE_REQUIRED: { code: 'IMPORT_TITLE_REQUIRED', message: 'date import is required' },
+    IMPORT_ID_REQUIRED: { code: 'IMPORT_ID_REQUIRED', message: 'id import is required'},
+
+    //ORDER
+    ORDER_CODE_REQUIRED: { code: 'ORDER_CODE_REQUIRED', message: 'code order is required' },
+    ORDER_DATE_REQUIRED: { code: 'ORDERTITLE_REQUIRED', message: 'date order is required' },
+    ORDER_ID_REQUIRED: { code: 'ORDER_ID_REQUIRED', message: 'id order is required'},
 
     //USER
     PASSWORD_IS_NOT_MATCH: { code: 'PASSWORD_IS_NOT_MATCH', message: 'Nhập lại mật khẩu không đúng'},

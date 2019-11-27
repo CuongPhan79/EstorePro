@@ -115,5 +115,11 @@
 	"Giới tính": "Giới tính",
 	"Danh sách khách hàng": "Danh sách khách hàng",
 	"Nam": "Nam",
-	"Nữ": "Nữ"
+	"Nữ": "Nữ",
+	"Thông tin khách hàng": "Thông tin khách hàng",
+	"Thông tin bán hàng": "Thông tin bán hàng",
+	"Mã bán hàng là trường bắt buộc": "Mã bán hàng là trường bắt buộc",
+	"Mã đơn bán hàng tối thiểu 2 ký tự và tối đa 30 ký tự.": "Mã đơn bán hàng tối thiểu 2 ký tự và tối đa 30 ký tự.",
+	"Tạo đơn bán hàng": "Tạo đơn bán hàng",
+	"Số lượng": "Số lượng"
 }

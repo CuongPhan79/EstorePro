@@ -122,6 +122,13 @@ Cloud.setup({
             "args": []
         },
         //-------------------------IMPORT----------------
+         //ORDER
+         "addOrder": {
+            "verb": "POST",
+            "url": "/api/v1/backend/order/add",
+            "args": []
+        },
+        //-------------------------ORDER----------------
         //USER
         "addUser": {
             "verb": "POST",

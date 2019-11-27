@@ -59,7 +59,11 @@ module.exports = {
     },
     imports: {
       collection: 'import',
-      via: 'user'
+      via: 'createdBy'
+    },
+    orders: {
+      collection: 'order',
+      via: 'createdBy'
     }
   }
 };

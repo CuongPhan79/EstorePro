@@ -22,6 +22,10 @@ module.exports = {
         description: 'The User address',
         example: 'abc street, ward 5, Ho Chi Minh City'
       },
+      imports: {
+        collection: 'import',
+        via: 'supplier'
+      }
     }
   };
   

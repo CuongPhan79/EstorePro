@@ -25,9 +25,12 @@ module.exports = {
         type: 'string',
         required: true
        },
-       user: {
+       createdBy: {
         model: 'user'
-      }
+      },
+      supplier: {
+        model: 'supplier'
+      },
     }
   };
   

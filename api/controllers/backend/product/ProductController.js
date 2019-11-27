@@ -186,6 +186,7 @@ module.exports = {
       tmpData.entryPrice = (product.entryPrice) + ' đ';
       tmpData.price = product.price ? product.price + ' đ': '-';
       tmpData.tool = await sails.helpers.renderRowAction(product);
+      tmpData.number = product.number;
       tmpData.description = product.description;
       if (product.status == 0) {
         tmpData.status = '<label class="badge badge-warning">Lưu tạm</label>';

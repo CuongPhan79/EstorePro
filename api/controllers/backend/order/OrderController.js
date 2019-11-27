@@ -6,13 +6,13 @@ module.exports = {
         const params = req.allParams();
         // CHECK NAME & CODE
         if (!params.code || !params.code.trim().length) {
-        return res.badRequest(ErrorService.IMPORT_CODE_REQUIRED);
+        return res.badRequest(ErrorService.ORDER_CODE_REQUIRED);
         }
         if (!params.date || !params.date.trim().length) {
-            return res.badRequest(ErrorService.IMPORT_DATE_REQUIRED);
+            return res.badRequest(ErrorService.ORDER_DATE_REQUIRED);
         }
-        const code = await Import.findOne({ code: params.code });
-        if (code) return res.ok({message: 'Mã nhập hàng bị trùng'});
+        const code = await Order.findOne({ code: params.code });
+        if (code) return res.ok({message: 'Mã bán hàng bị trùng'});
         // PREPARE DATA
         let price = {};
         price.totalPrice = params.totalPrice;
@@ -25,18 +25,18 @@ module.exports = {
             price: price,
             date: params.date,
             createdBy: req.me.id,
-            supplier: params.supplierBox
+            buyer: params.customerBox
         };
-        // ADD NEW DATA
-        const newImport = await ImportService.add(newData);
-        // ADD NUMBER PRODUCT AFTER CREATE IMPORT
-        for(product of newData.listProduct) {
+        // ADD NEW DATA 
+        const newOrder = await OrderService.add(newData);
+         // MINUS NUMBER PRODUCT AFTER CREATE IMPORT
+         for(product of newData.listProduct) {
             let productGet = await Product.findOne({_id: product.product})
             let number = productGet.number;
-            let data = {number: number + product.number};
-            let add = await Product.update(product.product).set(data);
+            let data = {number: number - product.number};
+            let minus = await Product.update(product.product).set(data);
         }
         // RETURN DATA
-        return res.ok(newImport);
+        return res.ok(newOrder);
     }
 }

@@ -128,7 +128,8 @@ class ListIndexProductBackendEKP {
 			"columns": [
         { "data": "id" },
         { "data": "code" },
-        { "data": "title" },
+		{ "data": "title" },
+		{ "data": "number" },
         { "data": "entryPrice" },
         { "data": "price" },
         { "data": "productType" },
