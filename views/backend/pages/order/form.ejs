@@ -8,25 +8,6 @@
         <div class="col-md-8">
             <div class="card grid-margin">
                 <div class="card-body">
-                    <h4 class="card-title"><%= __('Thông tin khách hàng') %></h4>
-                    <div class="form-group row align-items-md-center">
-                        <label class="col-md-3">Chọn khách hàng</label>
-                        <div class="col-md-9">
-                            <select id="customerBox" name="customerBox" class="form-control js-process-basic-single  select2-single "
-                                data-placeholder="<%= __('Choose') %>" single="single" >
-                                <% _.each(customers, function (customer, index) { %>
-                                    <option value="<%= customer.id %>">
-                                        <p> <%=customer.firstName %> <%=customer.lastName %></p>
-                                        <span>(<%=customer.phone%>)</span>     
-                                    </option>
-                                <% }) %> 
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card grid-margin">
-                <div class="card-body">
                     <h4 class="card-title"><%= __('Danh sách sản phẩm') %></h4>
                     <label class="col-md-3">Bao gồm</label>
                     <div class="col-md-12">

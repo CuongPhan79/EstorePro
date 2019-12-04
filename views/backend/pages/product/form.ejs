@@ -150,23 +150,14 @@ data-fv-icon-validating="glyphicon glyphicon-refresh" data-fv-live="enabled" dat
                         <li class="list-inline-item">
                           <div class="form-check">
                             <label class="form-check-label">
-                              <input id="statusActive" type="radio" class="form-check-input" name="status" checked
+                              <input id="statusActive" type="radio" class="form-check-input" name="status" <%if(productObj.status==1){%>checked <%}%>
                                 value="<%= STATUS.ACTIVE %>">
                               <i class="input-helper"></i>
                               <%= __('Sử dụng') %>
                             </label>
                           </div>
                         </li>
-                        <li class="list-inline-item">
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input id="statusDraft" type="radio" class="form-check-input" name="status"
-                                value="<%= STATUS.DRAFT %>">
-                              <i class="input-helper"></i>
-                              <%= __('Lưu tạm') %>
-                            </label>
-                          </div>
-                        </li>
+                        
                       </ul>
                     </div>
                   </div>

@@ -20,7 +20,7 @@ module.exports = {
     const newData = {
       code: params.code,
       title: params.title, // REQUIRED
-      status: params.status, // REQUIRED
+      status: 1, // REQUIRED
       entryPrice: params.entryPrice,
       image: params.thumbnail,
       price: params.price,
@@ -95,6 +95,7 @@ module.exports = {
     if (!params.ids) return res.badRequest(ErrorService.PRODUCT_ID_REQUIRED);
     // Call constructor with custom options:
     let data = { status: sails.config.custom.STATUS.TRASH };
+    let data1 = { status: sails.config.custom.STATUS.DRAFT };
     let ids = params.ids;
     if(params.ids.indexOf(';') != -1) {
       ids = ids.split(';');
@@ -105,7 +106,7 @@ module.exports = {
         if (!dataObj) return res.notFound(ErrorTitle.ERR_NOT_FOUND);
         //If status  == 3 => Delete 
         if (dataObj.status == 3) {
-          ProductService.del({ id: ids[i] });
+          await Product.update(ids[i]).set(data1);
         } else {
           await Product.update(ids[i]).set(data);
         }
@@ -117,7 +118,7 @@ module.exports = {
       if (!dataObj) return res.notFound(ErrorTitle.ERR_NOT_FOUND);
       //If status Title == 3 => Delete Title
       if (dataObj.status == 3) {
-        ProductService.del({ id: ids });
+        await Product.update(ids).set(data1);
       } else {
         await Product.update(ids).set(data);
       }

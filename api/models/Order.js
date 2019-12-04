@@ -25,6 +25,12 @@ module.exports = {
         type: 'string',
         required: true
        },
+       type: {
+        type: 'number',
+       },
+       status: {
+        type: 'number',
+       },
        createdBy: {
         model: 'user'
       },

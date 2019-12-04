@@ -25,7 +25,8 @@ module.exports = {
             price: price,
             date: params.date,
             createdBy: req.me.id,
-            buyer: params.customerBox
+            status: 1,
+            type: 1//no customer
         };
         // ADD NEW DATA 
         const newOrder = await OrderService.add(newData);

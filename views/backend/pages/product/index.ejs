@@ -36,14 +36,6 @@
               </a>
               </li>
               <li class="nav-item" role="presentation">
-                <a class="nav-link <% if(status == 0) {%> active <% } %>" href="<%= BACKEND.DRAFT.URL %>">
-                  <%= __('Lưu tạm') %>
-                  <span class="badge badge-pill <%=(status == 0)? 'badge-primary':'badge-outline-primary' %>">
-                    <%= totalDraft %>
-                  </span>
-                </a>
-              </li>
-              <li class="nav-item" role="presentation">
                 <a class="nav-link <% if(status == 3) {%> active <% } %>" href="<%= BACKEND.TRASH.URL %>">
                   <%= __('Thùng rác') %>
                   <span class="badge badge-pill <%=(status == 3)? 'badge-primary':'badge-outline-primary' %>">

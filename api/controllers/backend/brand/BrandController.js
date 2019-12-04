@@ -10,9 +10,9 @@ module.exports = {
     }
     // PREPARE DATA
     const newData = {
-    title: params.title, // REQUIRED
-    status: params.status, // REQUIRED
-    description: params.description,
+      title: params.title, // REQUIRED
+      status: 1, // REQUIRED
+      description: params.description,
     };
     // ADD NEW DATA 
     const newBrand = await BrandService.add(newData);
@@ -64,6 +64,7 @@ module.exports = {
     if (!params.ids) return res.badRequest(ErrorService.BRAND_ID_REQUIRED);
     // Call constructor with custom options:
     let data = { status: sails.config.custom.STATUS.TRASH };
+    let data1 = { status: sails.config.custom.STATUS.DRAFT };
     let ids = params.ids;
     if(params.ids.indexOf(';') != -1) {
       ids = ids.split(';');
@@ -74,7 +75,7 @@ module.exports = {
         if (!dataObj) return res.notFound(ErrorService.ERR_NOT_FOUND);
         //If status  == 3 => Delete 
         if (dataObj.status == 3) {
-          BrandService.del({ id: ids[i] });
+          await Brand.update(ids[i]).set(data1);
         } else {
           await Brand.update(ids[i]).set(data);
         }
@@ -86,7 +87,7 @@ module.exports = {
       if (!dataObj) return res.notFound(ErrorService.ERR_NOT_FOUND);
       //If status Title == 3 => Delete Title
       if (dataObj.status == 3) {
-        BrandService.del({ id: ids });
+        await Brand.update(ids).set(data1);
       } else {
         await Brand.update(ids).set(data);
       }
