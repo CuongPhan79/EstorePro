@@ -110,13 +110,12 @@ class ListIndexCustomerBackendEKP {
                 { "data": "birthday" },
                 { "data": "phone" },
                 { "data": "address" },
-				        { "data": "tool" },
 			],
 			//Define first column without order
 			columnDefs: [
 				{
 					"orderable": false,
-					"targets": [ 2, 3, 4, 5, 6]
+					"targets": [ 2, 3, 4, 5]
 				}
 			],
 			"order": [],

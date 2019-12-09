@@ -16,7 +16,7 @@ class ListIndexImportBackendEKP {
 	constructor(opts) {
 		_.extend(this, opts);
 
-		this.tblId = 'tblBrand';
+		this.tblId = 'tblImport';
 		this.tableObj = $('#' + this.tblId);
 		this.checkAll = null;
     this.listChecked = '';
@@ -115,7 +115,6 @@ class ListIndexImportBackendEKP {
 		let params = {};
 		let searchParams = new URLSearchParams(window.location.search);
 		params.type = searchParams.get('type') || '0';
-		params.status = searchParams.get('status') || '1';
 		//cloud success  
 		window.dataTable = this.tableObj.DataTable({
 			"language": {
@@ -123,23 +122,24 @@ class ListIndexImportBackendEKP {
 			},
 			"processing": true,
 			"serverSide": true,
-			"ajax": `/api/v1/backend/brand/search?status=${params.status}`,
+			"ajax": `/api/v1/backend/import/seacrh`,
 			//Add column data (JSON) mapping from AJAX to TABLE
 			"columns": [
-        { "data": "id" },
-				{ "data": "title" },
-				{ "data": "description" },
-				{ "data": "status" },
+        		{ "data": "code" },
+				{ "data": "date" },
+				{ "data": "userCreated" },
+				{ "data": "supplier" },
+				{ "data": "note" },
 				{ "data": "tool" },
 			],
 			//Define first column without order
 			columnDefs: [
 				{
 					"orderable": false,
-					"targets": [0, -3, -2, -1]
+					"targets": [0, 2, -3, -2, -1]
 				}
 			],
-			"order": [[1, "asc"]],
+			"order": [],
 			"iDisplayLength": 10,
 			"aLengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
 			//"buttons": ['copy', 'excel', 'csv', 'pdf', 'print'],

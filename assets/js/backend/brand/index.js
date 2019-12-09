@@ -425,11 +425,8 @@ class FormIndexBrandBackendEKP {
               // Update status radiobutton
               if (value == 1) {
                 _this.formObj.find('#statusActive')[0].checked = true;
-                _this.formObj.find('#statusDraft')[0].checked = false;
               } else {
-                _this.formObj.find('#statusActive')[0].checked = false;
-                _this.formObj.find('#statusDraft')[0].checked = true;
-              }
+                _this.formObj.find('#statusActive')[0].checked = false;              }
             }
           });
     

@@ -41,11 +41,10 @@ module.exports.routes = Object.assign(routes_api.api, {
   //SUPPLIER
   'GET /backend/supplier/index': { action: 'backend/supplier/index'},
   
-  //SUPPLIER
-  'GET /backend/import/index': { action: 'backend/import/index'},
-
   //IMPORT
   'GET /backend/import/form': {action: 'backend/import/form'},
+  'GET /backend/import/index': { action: 'backend/import/index'},
+  'GET /backend/import/formView/:id': { action: 'backend/import/view'},
 
   //USER
   'GET /backend/user/index': {action: 'backend/user/index'},

@@ -143,7 +143,7 @@ class ListIndexProductTypeBackendEKP {
 			],
 			"order": [],
 			"iDisplayLength": 10,
-			"aLengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
+			"aLengthMenu": [[10, 20, 50, -1], [10, 20, 50, "Tất cả"]],
 			//"buttons": ['copy', 'excel', 'csv', 'pdf', 'print'],
 			"pagingType": "numbers",
 			"sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i><'col-sm-7'p>>",
@@ -239,7 +239,7 @@ class FormIndexProductTypeBackendEKP {
   
         this.messages = {
           headlineAdd: 'Thêm loại sản phẩm',
-          headlineUpdate: 'Cập nhật sản phẩm',
+          headlineUpdate: 'Cập nhật loại sản phẩm',
           addSuccess: 'Thêm mới thành công',
           editSuccess: 'Cập nhật thành công.',
           error: 'Có lỗi xảy ra',
@@ -426,10 +426,8 @@ class FormIndexProductTypeBackendEKP {
                 // Update status radiobutton
                 if (value == 1) {
                   _this.formObj.find('#statusActive')[0].checked = true;
-                  _this.formObj.find('#statusDraft')[0].checked = false;
                 } else {
                   _this.formObj.find('#statusActive')[0].checked = false;
-                  _this.formObj.find('#statusDraft')[0].checked = true;
                 }
             }
           });

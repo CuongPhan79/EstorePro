@@ -42,7 +42,7 @@ module.exports.api = {
     'GET /api/v1/backend/import/seacrh': { controller: 'backend/import/ImportController', action: 'search' },
     'POST /api/v1/backend/import/add': { controller: 'backend/import/ImportController', action: 'add' },
 
-    //IMPORT
+    //ORDER
     'GET /api/v1/backend/order/seacrh': { controller: 'backend/order/OrderController', action: 'search' },
     'POST /api/v1/backend/order/add': { controller: 'backend/order/OrderController', action: 'add' },
 

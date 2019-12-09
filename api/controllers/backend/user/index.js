@@ -1,3 +1,4 @@
+const moment = require('moment');
 module.exports = {
     inputs: {},
     exits: {
@@ -28,6 +29,7 @@ module.exports = {
       _default.totalActive = totalActive;
       _default.totalDraft = totalDraft;
       _default.status = status;
+      _default.currentDay = moment().format('YYYY-MM-DD');
       sails.log.info("================================ controllers/backend/list => TYPE ================================");
       return exits.success(_default);
     }

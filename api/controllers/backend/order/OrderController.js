@@ -34,8 +34,12 @@ module.exports = {
          for(product of newData.listProduct) {
             let productGet = await Product.findOne({_id: product.product})
             let number = productGet.number;
-            let data = {number: number - product.number};
-            let minus = await Product.update(product.product).set(data);
+            if(number <= 0){
+                return res.ok(({message: 'Sản phẩm' + productGet.title + 'đã hết'}))
+            }else{
+                let data = {number: number - product.number};
+                let minus = await Product.update(product.product).set(data);
+            } 
         }
         // RETURN DATA
         return res.ok(newOrder);

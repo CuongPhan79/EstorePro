@@ -67,9 +67,6 @@ const ProductService = {
         sort = (sort !== null && typeof sort === 'object') ? sort : [{ createdAt: 'DESC' }];
     
         let sujects = await Product.find({ where: where, limit: limit, skip: skip, sort: sort }).populate('productType').populate('brand');
-        // .populate("postsOfTag")
-        //.populate("createdBy", {select: ['id', 'fullName', 'type']})
-        // .populate("createdBy");
           return sujects;
     },
     count: async (where) => {

@@ -94,7 +94,7 @@
                     <div class="form-group row align-items-md-center">
                         <label class="col-md-3">Mã đơn nhập hàng</label>
                         <div class="col-md-9">
-                            <input type="text" id="code" class="form-control" name="code" data-fv-notempty="true"
+                            <input type="text" id="code" class="form-control" name="code" data-fv-notempty="true" value=<%=code%> readonly
                             data-fv-notempty-message="<%= __('Mã nhập hàng là trường bắt buộc') %>"
                             data-fv-stringlength="true" data-fv-stringlength-min="2" data-fv-stringlength-max="30"
                             data-fv-stringlength-message="<%= __('Mã đơn nhập hàng tối thiểu 2 ký tự và tối đa 30 ký tự.') %>" />

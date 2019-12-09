@@ -69,16 +69,13 @@
                     <div class="form-group row align-items-md-center">
                         <label class="col-md-3">Ngày bán</label>
                         <div class="col-md-9">
-                            <input type="date" value="<%= currentDay %>" id="description" class="form-control" rows="2" name="date" readonly>
+                            <input type="date" pattern= "^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$" value=<%=currentDay%> id="description" class="form-control" rows="2" name="date" readonly />
                         </div>
                     </div>
                     <div class="form-group row align-items-md-center">
                         <label class="col-md-3">Mã đơn bán hàng</label>
                         <div class="col-md-9">
-                            <input type="text" id="code" class="form-control" name="code" data-fv-notempty="true"
-                            data-fv-notempty-message="<%= __('Mã bán hàng là trường bắt buộc') %>"
-                            data-fv-stringlength="true" data-fv-stringlength-min="2" data-fv-stringlength-max="30"
-                            data-fv-stringlength-message="<%= __('Mã đơn bán hàng tối thiểu 2 ký tự và tối đa 30 ký tự.') %>" />
+                            <input type="text" id="code" class="form-control" name="code" value=<%=code%> readonly/>
                         </div>
                     </div>
                    

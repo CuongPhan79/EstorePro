@@ -74,9 +74,6 @@ const MediaService = {
         sort = (sort !== null && typeof sort === 'object') ? sort : [{ createdAt: 'ASC' }];
 
         let Medias = await Media.find({ where: where, limit: limit, skip: skip, sort: sort })
-            // .populate("postsOfTag")
-            //.populate("createdBy", {select: ['id', 'fullName', 'type']})
-            // .populate("authorId");
         return Medias;    
     },
 

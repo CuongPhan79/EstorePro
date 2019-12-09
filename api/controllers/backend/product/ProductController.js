@@ -287,12 +287,24 @@ module.exports = {
                 .toFile(require('path').resolve(uploadConfig.PATH_FOLDER, 'assets/uploads/') + '/' + moment().format('YYYY/MM') + '/' + destFileName)
                 .then((info) => {}).catch((err) => { sails.log(err); });
               thumbnail.path = '/uploads/' + moment().format('YYYY/MM') + '/' + destFileName;
+              Sharp(file.fd).resize(size.width)
+                .toFile(require('path').resolve(uploadConfig.PATH_FOLDER2, 'assets/uploads/') + '/' + moment().format('YYYY/MM') + '/' + destFileName)
+                .then((info) => {}).catch((err) => { sails.log(err); });
+              thumbnail.path = '/uploads/' + moment().format('YYYY/MM') + '/' + destFileName;
             } else {
               let type = size.type;
               Sharp(file.fd).resize(size.width, size.height)
                 .toFile(require('path').resolve(uploadConfig.PATH_FOLDER, 'assets/uploads/') + '/' + moment().format('YYYY/MM') + '/' + destFileName)
                 .then((info) => { }).catch((err) => { sails.log(err); });
               thumbnail.sizes[type] = {
+                width: size.width, height: size.height,
+                path: '/uploads/' + moment().format('YYYY/MM') + '/' + destFileName
+              };
+              let type2 = size.type;
+              Sharp(file.fd).resize(size.width, size.height)
+                .toFile(require('path').resolve(uploadConfig.PATH_FOLDER, 'assets/uploads/') + '/' + moment().format('YYYY/MM') + '/' + destFileName)
+                .then((info) => { }).catch((err) => { sails.log(err); });
+              thumbnail.sizes[type2] = {
                 width: size.width, height: size.height,
                 path: '/uploads/' + moment().format('YYYY/MM') + '/' + destFileName
               };

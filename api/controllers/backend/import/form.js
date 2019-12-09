@@ -1,4 +1,5 @@
 const moment = require('moment');
+const randomize = require('randomatic');
 module.exports = {
     inputs: {},
     exits: {
@@ -28,6 +29,7 @@ module.exports = {
       _default.totalDraft = totalDraft;
       _default.status = status;
       _default.currentDay = moment().format('YYYY-MM-DD');
+      _default.code = randomize('A0', 8);
       sails.log.info("================================ controllers/backend/list => TYPE ================================");
       return exits.success(_default);
     }

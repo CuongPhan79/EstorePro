@@ -72,10 +72,6 @@ const SettingService = {
         sort = (sort !== null && typeof sort === 'object') ? sort : [{ createdAt: 'DESC' }];
 
         let classes  = await Setting.find({ where: where, limit: limit, skip: skip, sort: sort})
-            // .populate("shool")
-            // .populate("listSettings")
-            //.populate("owner", {select: ['name', 'totalSetting']})
-            //.populate("uploadBy");
         return classes;    
     },
 

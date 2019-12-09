@@ -71,6 +71,7 @@ module.exports.custom = {
       //   type: 'medium_large'
       // }
     ],
-    PATH_FOLDER: process.env.PATH_FOLDER || '/HK1Nam4/TLCN/EstorePro/' 
+    PATH_FOLDER: process.env.PATH_FOLDER || '/HK1Nam4/TLCN/EstorePro/',
+    PATH_FOLDER2: process.env.PATH_FOLDER || '/HK1Nam4/TLCN/EstoreProOnline/'
   }
 };

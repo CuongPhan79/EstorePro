@@ -142,12 +142,12 @@ class ListIndexProductBackendEKP {
 			columnDefs: [
 				{
 					"orderable": false,
-					"targets": [0, -3, -2, -1]
+					"targets": [0, 1, -3, -2, -1, -4, -5]
 				}
 			],
 			"order": [],
 			"iDisplayLength": 10,
-			"aLengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
+			"aLengthMenu": [[10, 20, 50, -1], [10, 20, 50, "Tất cả"]],
 			//"buttons": ['copy', 'excel', 'csv', 'pdf', 'print'],
 			"pagingType": "numbers",
 			"sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i><'col-sm-7'p>>",

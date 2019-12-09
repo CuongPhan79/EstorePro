@@ -74,9 +74,6 @@ const CustomerService = {
         sort = (sort !== null && typeof sort === 'object') ? sort : [{ createdAt: 'ASC' }];
 
         let Customers = await Customer.find({ where: where, limit: limit, skip: skip, sort: sort })
-            // .populate("postsOfTag")
-            //.populate("createdBy", {select: ['id', 'fullName', 'type']})
-            // .populate("authorId");
         return Customers;    
     },
 

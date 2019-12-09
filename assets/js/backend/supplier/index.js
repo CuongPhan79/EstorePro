@@ -105,7 +105,7 @@ class ListIndexSupplierBackendEKP {
 			"ajax": `/api/v1/backend/supplier/search?status=${params.status}`,
 			//Add column data (JSON) mapping from AJAX to TABLE
 			"columns": [
-                { "data": "name" },
+        { "data": "name" },
 				{ "data": "email" },
 				{ "data": "phone" },
 				{ "data": "address" },

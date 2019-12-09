@@ -19,7 +19,7 @@ module.exports = {
     if(jsonObject.url) {
       result=`<div class="btn-group-action">				
         <div class="btn-group pull-right">
-          <a href="${jsonObject.url ? jsonObject.url + jsonObject.id : 'javascript:void(0);'}" data-id="${jsonObject.id}" title="Edit" class="edit btn btn-default edit-row">
+          <a href="${jsonObject.url ? jsonObject.url + jsonObject.id : 'javascript:void(0);'}" data-id="${jsonObject.id}" title="Sửa" class="edit btn btn-default edit-row">
             <i class="mdi mdi-pencil"></i>
           </a>
           <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
