@@ -54,6 +54,7 @@ module.exports.routes = Object.assign(routes_api.api, {
 
   //ORDER
   'GET /backend/order/form' : {action: 'backend/order/form'},
+  'GET /backend/order/index' : {action: 'backend/order/index'},
   
   /***************************************************************************
   *                                                                          *

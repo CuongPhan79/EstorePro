@@ -35,10 +35,6 @@ module.exports = {
         description: 'The User address',
         example: 'abc street, ward 5, Ho Chi Minh City'
       },
-      orders: {
-        collection: 'order',
-        via: 'buyer'
-      },
       password: {
         type: 'string',
         description:

@@ -21,6 +21,10 @@ module.exports.custom = {
   // …
   BACKEND: {
     //Alwas SETTING URL = window.location.pathname to MATCH on frontend (main.js)
+    ALL: {
+      ID: 'all',
+      URL: '?status=-1'
+    },
     ACTIVE: {
       ID: 'publish',
       URL: '?status=1'
